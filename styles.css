@@ -117,6 +117,17 @@ h6{
     text-transform: capitalize;
 }
 
+#term li{
+    display: none;
+}
+
+#term p{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    padding: 1em;
+}
+
 .otherInfo{
     
 }
