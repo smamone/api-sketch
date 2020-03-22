@@ -1,0 +1,340 @@
+/** CSS styles **/
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    width: 99.9%;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+h1{
+    font-size: 6em;
+    padding: 0.9em;
+}
+
+h2{
+    font-size: 1.9em;
+    padding: 0.8em;
+}
+
+h3{
+    font-size: 1.7em;
+    padding: 0.7em;
+}
+
+h4{
+    font-size: 1.5em;
+    padding: 0.6em;
+}
+
+h5{
+    font-size: 1.3em;
+    padding: 0.5em;    
+}
+
+h6{
+    font-size: 1.1em;
+    padding: 0.5em;
+}
+
+
+/** STYLES **/
+#currently{
+    color: white;
+    font-family: sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+
+#tempIcon{
+    float: left;
+    width: 48%;
+    height: 100%;
+    text-align: center;
+}
+
+#tempIcon img{
+    width: 90%;
+}
+
+#tempDesc{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    width: 48%;
+    float: right;
+    padding: 2%;
+    text-align: right;
+}
+
+#greeting{
+    color: white;
+    padding: 1% 1.5%;
+}
+
+#temp{
+    padding: 2% 1.5%;
+}
+
+.celcius{
+    font-size: 0.5em;
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0 1.5%;
+    margin: 0;
+}
+
+#currentMaxTemp{
+    font-size: 2.3em;
+    padding: 0 1.5%;
+}
+
+#date, #time{
+    padding 0;
+    margin: 0;
+}
+
+#time{
+    text-transform: uppercase;
+}
+
+#desc{
+    font-style: italic;
+    text-transform: lowercase;
+}
+
+#location{
+    text-transform: capitalize;
+}
+
+.otherInfo{
+    
+}
+
+.otherInfo ul{
+    list-style: none;
+    text-align: center;
+}
+
+.otherInfo ul li{
+    display: inline-block;
+    padding: 3% 1.95% 0.5%;
+    width: 28%;
+    border: 0.15em solid white;
+    border-radius: 1em;
+}
+
+.otherInfo ul li p{
+    font-size: 1.2em;
+    background-color: orange;
+}
+
+/* FUTURE TEMPS */
+#future{
+    width: 95%;
+    height: 25%;
+    background-color: coral;
+    font-family: sans-serif;
+    padding: 2.5%;
+    margin: auto;
+    float: left;
+}
+
+#future h3{
+    padding: 2% 0;
+}
+
+#futureDays{
+    list-style-type: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+#futureDays > li{
+    padding: 1% 2.4%;
+    display: inline-block;
+    border-right: 0.1em solid #e3e5e6;
+    min-height: 7em;
+    width: 10%;
+}
+
+#futureDays > li:first-child{
+    padding-left: 0;
+}
+
+#futureDays > li:last-child{
+    border-right: none;
+    padding-right: 0;
+}
+
+.day{
+    text-align: center;
+}
+
+.futureIcon{
+    width: 100%;
+    margin: 0;
+    padding: 7.5% 0;
+}
+
+.futureImg{
+    width: 100%;
+}
+
+.iconText{
+    display: none;
+}
+
+.minTemp, .maxTemp{
+    font-size: 1.5em;
+    display: inline-block;
+    width: 40%;
+    padding: 0 5%;
+}
+
+.minTemp sup, .maxTemp sup{
+    font-size: 0.5em;
+}
+
+.minTemp{
+    color: #0080ff;
+}
+
+.maxTemp{
+    color: #e00707;
+}
+
+//** RESPONSIVE SETTINGS **/
+
+@media screen and (min-width: 901px) and (max-width: 1180px){
+
+    #futureDays > li{
+        padding: 1% 2.4%;
+        width: 12%;
+    }
+    
+    #futureDays > li:nth-child(6){
+        border-right: none;
+    }
+
+    #futureDays > li:last-child{
+        display: none;
+    }
+    
+}
+
+@media screen and (min-width: 701px) and (max-width: 900px){
+
+    #tempIcon{
+        width: 100%;
+        height: 100%;
+    }
+
+    #tempDesc{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left;
+        width: 100%;
+        float: left;
+        padding: 2%;
+        text-align: center;
+    }
+
+    .otherInfo ul li{
+        display: inline-block;
+        padding: 3% 1.95% 0.5%;
+        width: 25%;
+        border: 0.15em solid white;
+        border-radius: 1em;
+    }
+    
+    .otherInfo ul li h3{
+        font-size: 1.4em;
+    }
+    
+    #futureDays > li{
+        padding: 1% 2.4%;
+        width: 15%;
+    }
+    
+    #futureDays > li:nth-child(5){
+        border-right: none;
+    }
+
+    #futureDays > li:nth-child(6), #futureDays > li:last-child{
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width: 700px){
+
+    #tempIcon{
+        width: 100%;
+        height: 100%;
+    }
+
+    #tempDesc{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left;
+        width: 100%;
+        float: left;
+        padding: 2%;
+        text-align: center;
+    }
+
+    .otherInfo ul li{
+        display: inline-block;
+        padding: 3% 1.95% 0.5%;
+        width: 25%;
+        border: 0.15em solid white;
+        border-radius: 1em;
+    }
+    
+    .otherInfo ul li h3{
+        font-size: 1.4em;
+    }
+
+    .otherInfo ul li p{
+        font-size: 1.2em;
+        background-color: orange;
+    }
+    
+    #future h3{
+        text-align: center;
+    }
+
+    #futureDays > li{
+        display: block;
+        padding: 6% 0;
+        width: 65%;
+        margin: auto;
+        border-bottom: 0.1em solid #e3e5e6;
+        border-right: none;
+    }
+    
+    #futureDays > li:last-child{
+        border-bottom: none;
+    }
+
+    .minTemp, .maxTemp{
+        font-size: 1.5em;
+        display: inline-block;
+        width: 20%;
+        padding: 0 5%;
+    }
+    
+}

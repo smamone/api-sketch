@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Weather App</title>
+
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+
+    <body>
+
+        <div id="currently">
+
+            <div id="tempIcon">
+
+            </div> <!-- tempIcon -->
+
+            <div id="tempDesc">
+
+                <h2 id="greeting"><span></span></h2>
+                <h1 id="temp"><span></span><sup class="celcius">&deg;C</sup></h1> <!-- current temp -->
+                <p class="title">MAX</p>
+                <h2 id="currentMaxTemp"><span></span>&deg;C</h2> <!-- today's max temp -->
+                <h3 id="date"><span></span></h3> <!-- date -->
+                <h3 id="time"><span></span></h3> <!-- time -->
+
+                <h2 id="summary">It's <span id="desc"></span> in <span id="location"></span></h2> <!-- description & location -->
+
+                <div class="otherInfo">
+
+                    <ul>
+                        <li>
+                            <p class="title">HUMIDITY</p>
+                            <h3 id="humidity"><span></span>%</h3>
+                        </li>
+                        <li>
+                            <p class="title">WIND SPEED</p>
+                            <h3 id="wind"><span></span>km/h</h3>
+                        </li>
+                        <li>
+                            <p class="title">UV INDEX</p>
+                            <h3 id="uv"><span></span></h3>
+                        </li>
+                    </ul>
+
+                </div> <!-- otherInfo -->
+
+            </div> <!-- tempDesc -->
+
+        </div> <!-- currently -->
+
+        <div id="future">
+
+            <h3>The week ahead:</h3>
+
+            <ul id="futureDays">
+
+            </ul>
+
+        </div> <!--future-->
+
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/js.js"></script>
+        
+    </body>
+
+</html>
