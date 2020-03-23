@@ -229,18 +229,53 @@ h6{
 
 //** RESPONSIVE SETTINGS **/
 
-@media screen and (min-width: 901px) and (max-width: 1180px){
+@media screen and (min-width: 1136px){
 
     #futureDays > li{
         padding: 1% 2.4%;
-        width: 12%;
+        width: 15%;
+    }
+
+    .minTemp, .maxTemp{
+        font-size: 1.5em;
+        display: inline-block;
+        width: 40%;
+        padding: 0 5%;
     }
     
-    #futureDays > li:nth-child(6){
+}
+
+@media screen and (min-width: 901px) and (max-width: 1135px){
+
+    .otherInfo ul li{
+        display: inline-block;
+        padding: 3% 1.95% 0.5%;
+        width: 25%;
+        border: 0.15em solid white;
+        border-radius: 1em;
+    }
+    
+    .otherInfo ul li h3{
+        font-size: 1.3em;
+    }
+    
+    #futureDays > li{
+        padding: 1% 2.4%;
+        width: 15%;
+    }
+
+    .minTemp, .maxTemp{
+        font-size: 1.5em;
+        display: inline-block;
+        width: 40%;
+        padding: 0 5%;
+    }
+    
+    #futureDays > li:nth-child(5){
         border-right: none;
     }
 
-    #futureDays > li:last-child{
+    #futureDays > li:nth-child(6), #futureDays > li:last-child{
         display: none;
     }
     
