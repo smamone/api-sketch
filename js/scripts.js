@@ -1,77 +1,78 @@
 // JavaScript
 
-$(document).ready(function(){
-    
+$(document).ready(function () {
+
     var newLocation = "";
-    
-    if (navigator.geolocation){
-        
-        console.log(navigator.geolocation);
-        
-        function success(pos){
-            
-            console.log(pos);
-            
+
+    if (navigator.geolocation) {
+
+        //        console.log(navigator.geolocation);
+
+        function success(pos) {
+
+            //            console.log(pos);
+
             var coords = pos.coords;
-            
-            console.log("my current position is: ");
-            console.log("lat: " + coords.latitude);
-            console.log("long: " + coords.longitude);
-            console.log("more or less: " + coords.accuracy + "m away.");
-            
+
+            //            console.log("my current position is: ");
+            //            console.log("lat: " + coords.latitude);
+            //            console.log("long: " + coords.longitude);
+            //            console.log("more or less: " + coords.accuracy + "m away.");
+
             // set string for location based on Dark Sky API format
             newLocation = coords.latitude + "," + coords.longitude;
-            
+
             // set string to get location name based on Open Cage API format
             var latLongName = coords.latitude + "+" + coords.longitude;
             var locationPhoto = "";
-            
+
             // call function to get weather data from API
             getWeatherData(newLocation);
-            
+
             // call function to get location name from API
             getLocationName(latLongName);
-            
+
             // call function to get location img from API
-            getLocationImg(locationPhoto);
-            
+            //            BEN: function  doesn't exist
+            //            getLocationImg(locationPhoto);
+
         }
-        
-        function error(err){
-            
+
+        function error(err) {
+
             console.log(err);
-            
+
             // default location is Canberra lat long
             var defaultLocation = "-35.28346,149.12807";
-            
+
             getWeatherData(defaultLocation);
-            
+
         }
-        
+
         // trigger the browser prompt
         navigator.geolocation.getCurrentPosition(success, error);
-        
+
     }
-    
+
 }); // document ready close
 
 
 // --- FUNCTIONS --- //
 
 // FUNCTION to get location name from OPEN CAGE API
-function getLocationName(latLongCoords){
-    
+function getLocationName(latLongCoords) {
+    console.log('in get location name');
     // my Open Cage Data API key
     var keyOpenCage = "135d8af66fb04c9bac0092208a55e2a7";
 
     // Open Cage Data API call
     var geocodeURL = "https://api.opencagedata.com/geocode/v1/json?q=" + latLongCoords + "&key=" + keyOpenCage;
-    
+
     // make request to server using Open Cage API call
-    $.getJSON(geocodeURL, function(locationData){
-        
-        console.log(locationData.results[0]);
-        
+    $.getJSON(geocodeURL, function (locationData) {
+
+        //        console.log(locationData.results[0]);
+
         var locationComponent = locationData.results[0].components;
         var locString = locationComponent.suburb + ", " + locationComponent.state_code;
         var location = document.getElementById("#location");
@@ -79,16 +80,17 @@ function getLocationName(latLongCoords){
         // LOCATION
         // get location and add to html tag
         $("#location").append(locString);
-        
-        console.log(locString);
-        
+
+        //        console.log(locString);
+
     });
-    
-}
+
+}; // close getLocationName
 
 // FUNCTION to load data from DARK SKY API
-function getWeatherData(currentLocation){
-    
+function getWeatherData(currentLocation) {
+    console.log('in get weather data');
+
     // my Dark Sky API key
     var keyDarkSky = "008bf272749fe7c833b4606af967ab5e";
 
@@ -98,18 +100,19 @@ function getWeatherData(currentLocation){
     var term = document.getElementById("term");
 
     // make request to server using Dark Sky API call
-    $.getJSON(urlDarkSky, function(data) {
+    $.getJSON(urlDarkSky, function (data) {
+        console.log('getting data');
+        //        console.log(data); // show API data
 
-        console.log(data); // show API data
+        //BEN: we'll use moment.js to format the date instead, so this won't actually be used
+        //        var now = new Date(data.currently.time * 1000); // get current time and mulitply by 1000 for milliseconds
 
-        var now = new Date(data.currently.time * 1000); // get current time and mulitply by 1000 for milliseconds
-        var timer = setInterval(updateTimeTemp, 10000); // call updateTimeTemp every minute
-        var temp = data.currently.temperature; // get current temperature
+        //        var timer = setInterval(updateTimeTemp, 10000); // call updateTimeTemp every minute
         var maxTemp = data.daily.data[0].temperatureMax; // get max temperature for today
 
         // show current data
-        console.log(timer);
-        console.log(maxTemp);
+        //        console.log(timer);
+        //        console.log(maxTemp);
 
         // TEMPERATURE
         // set the span in the h2 tag
@@ -122,28 +125,8 @@ function getWeatherData(currentLocation){
 
         // TIME
         // get current time and convert to 12-hour format, hours and minutes
-        function updateTimeTemp(){
-            
-            console.log(now);
-            console.log(temp);
-            
-            // TIME
-            // get current time and add to html tag
-            $("#time span").html(now.toLocaleTimeString(navigator.language, {
-                hour12: true,
-                hour: 'numeric',
-                minute: 'numeric'
-            }));
-
-            // DATE
-            // get current date and add to html tag
-            $("#date span").html(now.toDateString());
-            
-            // TEMP
-            // get current temp and add to html tag
-            $("#temp span").html(temp.toFixed(1)); // round to 1 decimal place
-            
-        }
+        // call function and send data object so it can process it
+        updateTimeTemp(data.currently)
 
         // HUMIDITY
         // get humdity and add to html tag
@@ -157,245 +140,338 @@ function getWeatherData(currentLocation){
         // get uv index and add to html tag
         $("#uv span").html(data.currently.uvIndex);
 
+        //BEN: Now we've loaded the data we can call some functions
 
-    // FUNCTION to determine the DESCRIPTION to display based on the current temperature
-        
-        tempDesc(); // call the function
-        
-        function tempDesc(){
-            
-            if (temp >= 40) { // 40 or above
+        // call tempDesc and send the temp data with it
+        tempDesc(temp);
 
-                $("#temp").css("color", "#9e0b00"); // change text color to dark red
+        //call the  temp icon function and send data with it
+        tempIcon(data); // call the function
 
-            } else if (temp >= 35 && temp <= 39.9) { // between 35-39
+        // call the timeGreeting function - don't need to send data as it is based off users location
+        timeGreeting();
 
-                $("#temp").css("color", "#ff0000"); // change text color to red
+        // call futureTemps function
+        futureTemps(data);
 
-            } else if (temp >= 30 && temp <= 34.9) { // between 30-34
 
-                $("#temp").css("color", "#ff6a00"); // change text color to orange
+    }); //close get json
+}; // close getweatherdata
+//BEN: important - need to make sure the functions sit apart from each other
 
-            } else if (temp >= 25 && temp <= 29.9) { // between 25-29
+// FUNCTION to update time
+function updateTimeTemp(currently) {
+    console.log('in update time fn')
+    //BEN: create var to  hold current date/time from api
+    var currentDateObj = currently.time * 1000;
+    var temp = currently.temperature; // get current temperature
 
-                $("#temp").css("color", "#ffd500"); // change text color to sunny yellow
+    // BEN: have updated to include new moment.js date
+    // docs: https://momentjs.com/docs/#/displaying/
 
-            } else if (temp >= 20 && temp <= 24.9) { // between 20-24
+    var currentTime = moment(currentDate).format('hh:mm A');
+    var currentDate = moment(currentDate).format('dddd, MMMM Do');
 
-                $("#temp").css("color", "#fff200"); // change text color to yellow
+    console.log(currentTime);
 
-            } else if (temp >= 15 && temp <= 19.9) { // between 15-19
+    //TIME
+    $("#time span").html(currentTime);
 
-                $("#temp").css("color", "#91ff00"); // change text color to green
+    // DATE
+    // get current date and add to html tag
+    $("#date span").html(currentDate);
 
-            } else if (temp >= 10 && temp <= 14.9) { // between 10-14
+    // TEMP
+    // get current temp and add to html tag
+    $("#temp span").html(temp.toFixed(1)); // round to 1 decimal place
 
-                $("#temp").css("color", "#00ffb7"); // change text color to warm green
+}
 
-            } else if (temp >= 0 && temp <= 9.9) { // between 0-9
+// FUNCTION to determine the DESCRIPTION to display based on the current temperature
+function tempDesc(temp) {
 
-                $("#temp").css("color", "#00a6ff"); // change text color to blue
+    if (temp >= 40) { // 40 or above
 
-            } else { //below 0
+        $("#temp").css("color", "#9e0b00"); // change text color to dark red
 
-                $("#temp").css("color", "#00e1ff"); // change text color to ice blue
+    } else if (temp >= 35 && temp <= 39.9) { // between 35-39
 
-            }; // if statement close
-            
-        }; // tempDesc function close
-        
+        $("#temp").css("color", "#ff0000"); // change text color to red
 
-    // FUNCTION to determine the ICON to display based on the current temperature
-        
-        var sky = document.getElementById("currently");
-        var weatherIcon = document.getElementById("tempIcon");
+    } else if (temp >= 30 && temp <= 34.9) { // between 30-34
 
-        var currentIcon = data.currently.icon; // get current temperature icon
-        var defaultIcon = document.getElementById("defaultIcon");
+        $("#temp").css("color", "#ff6a00"); // change text color to orange
 
-        console.log(currentIcon); // show current icon
-        
-        tempIcon(); // call the function
-        
-        function tempIcon(){
+    } else if (temp >= 25 && temp <= 29.9) { // between 25-29
 
-            if (currentIcon == "clear-day") { // clear day
+        $("#temp").css("color", "#ffd500"); // change text color to sunny yellow
 
-                $(sunny).css("display", "block"); // show "sunny" icon and description
-                $(sky).css("background-color", "#24afff"); // change background color to blue
-                $(weatherIcon).html("<img src='/images/sun.png'>"); // set background image
+    } else if (temp >= 20 && temp <= 24.9) { // between 20-24
 
-            } else if (currentIcon == "clear-night") { // clear night
+        $("#temp").css("color", "#fff200"); // change text color to yellow
 
-                $(night).css("display", "block"); // show "night" icon and description
-                $(sky).css("background-color", "#00173D"); // change background color to dark blue
-                $(weatherIcon).html("<img src='/images/moon.png'>"); // set background image
+    } else if (temp >= 15 && temp <= 19.9) { // between 15-19
 
-            } else if (currentIcon == "rain") { // rain
+        $("#temp").css("color", "#91ff00"); // change text color to green
 
-                $(rain).css("display", "block"); // show "rain" icon and description
-                $(sky).css("background-color", "#a3a3a3"); // change background color to grey
-                $(weatherIcon).html("<img src='/images/rain.png'>"); // set background image
+    } else if (temp >= 10 && temp <= 14.9) { // between 10-14
 
-            } else if (currentIcon == "snow") { // snow
+        $("#temp").css("color", "#00ffb7"); // change text color to warm green
 
-                $(snowfall).css("display", "block"); // show "snowfall" icon and description
-                $(sky).css("background-color", "#a3a3a3"); // change background color to grey
-                $(weatherIcon).html("<img src='/images/snow.png'>"); // set background image
+    } else if (temp >= 0 && temp <= 9.9) { // between 0-9
 
-            } else if (currentIcon == "sleet") { // sleet
+        $("#temp").css("color", "#00a6ff"); // change text color to blue
 
-                $(sleet).css("display", "block"); // show "sleet" icon and description
-                $(sky).css("background-color", "darkgrey"); // change background color to dark grey
-                $(weatherIcon).html("<img src='/images/sleet.png'>"); // set background image
+    } else { //below 0
 
-            } else if (currentIcon == "wind") { // wind
+        $("#temp").css("color", "#00e1ff"); // change text color to ice blue
 
-                $(windy).css("display", "block"); // show "windy" icon and description
-                $(sky).css("background-color", "purple"); // change background color to purple
-                $(weatherIcon).html("<img src='/images/wind.png'>"); // set background image
+    }; // if statement close
 
-            } else if (currentIcon == "fog") { // foggy
+}; // tempDesc function close
 
-                $(foggy).css("display", "block"); // show "foggy" icon and description
-                $(sky).css("background-color", "#a3a3a3"); // change background color to gray
-                $(weatherIcon).html("<img src='/images/fog.png'>"); // set background image
 
-            } else if (currentIcon == "cloudy" || currentIcon == "partly-cloudy-day") { // cloudy or partly cloudy
+// FUNCTION to determine the ICON to display based on the current temperature
+function tempIcon(data) {
 
-                $(cloudy).css("display", "block"); // show "cloudy" icon and description
-                $(sky).css("background-color", "#4d4d4d"); // change background color to grey
-                $(weatherIcon).html("<img src='/images/cloud.png'>"); // set background image
+    var sky = document.getElementById("currently");
+    var weatherIcon = document.getElementById("tempIcon");
 
-            } else if (currentIcon == "partly-cloudy-night") { // partly cloudy night
+    var currentIcon = data.currently.icon; // get current temperature icon
+    var defaultIcon = document.getElementById("defaultIcon");
 
-                $(cloudyNight).css("display", "block"); // show "partly cloudy night" icon and description
-                $(sky).css("background-color", "#0b155e"); // change background color to dark blue
-                $(weatherIcon).html("<img src='/images/cloudnight.png'>"); // set background image
+    //console.log(currentIcon); // show current icon
 
-            } else { // below 0
+    if (currentIcon == "clear-day") { // clear day
 
-                $(sunny).css("display", "block"); //show sun icon and description
+        $(sunny).css("display", "block"); // show "sunny" icon and description
+        $(sky).css("background-color", "#24afff"); // change background color to blue
+        $(weatherIcon).html("<img src='/images/sun.png'>"); // set background image
 
-            }; // if statement close
-            
-        }; // tempIcon function close
+    } else if (currentIcon == "clear-night") { // clear night
 
-    // FUNCTION to determine the GREETING to display based on the current time
+        $(night).css("display", "block"); // show "night" icon and description
+        $(sky).css("background-color", "#00173D"); // change background color to dark blue
+        $(weatherIcon).html("<img src='/images/moon.png'>"); // set background image
 
-        var hours = new Date().getHours();
-        
-        timeGreeting(); // call the timeGreeting function
-        
-        function timeGreeting(){
+    } else if (currentIcon == "rain") { // rain
 
-            if (hours >= 0 && hours < 12){ // between 5am and 11:59am
+        $(rain).css("display", "block"); // show "rain" icon and description
+        $(sky).css("background-color", "#a3a3a3"); // change background color to grey
+        $(weatherIcon).html("<img src='/images/rain.png'>"); // set background image
 
-                $("#greeting span").html("Good morning!"); // show "Good morning"
+    } else if (currentIcon == "snow") { // snow
 
-            } else if (hours >= 12 && hours < 17){ // between 12pm and 4:59pm
+        $(snowfall).css("display", "block"); // show "snowfall" icon and description
+        $(sky).css("background-color", "#a3a3a3"); // change background color to grey
+        $(weatherIcon).html("<img src='/images/snow.png'>"); // set background image
 
-                $("#greeting span").html("Good afternoon!"); // show "Good afternoon"
+    } else if (currentIcon == "sleet") { // sleet
 
-            } else if (hours >= 17 && hours < 20){ // between 5pm and 7:59pm
+        $(sleet).css("display", "block"); // show "sleet" icon and description
+        $(sky).css("background-color", "darkgrey"); // change background color to dark grey
+        $(weatherIcon).html("<img src='/images/sleet.png'>"); // set background image
 
-                $("#greeting span").html("Good evening!"); // show "Good evening"
+    } else if (currentIcon == "wind") { // wind
 
-            } else { // between 8pm and 4:59am
+        $(windy).css("display", "block"); // show "windy" icon and description
+        $(sky).css("background-color", "purple"); // change background color to purple
+        $(weatherIcon).html("<img src='/images/wind.png'>"); // set background image
 
-                $("#greeting span").html("Good night!"); // show "Good night"
+    } else if (currentIcon == "fog") { // foggy
 
-            }; // if statement close
-            
-        }; // timeGreeting function close
+        $(foggy).css("display", "block"); // show "foggy" icon and description
+        $(sky).css("background-color", "#a3a3a3"); // change background color to gray
+        $(weatherIcon).html("<img src='/images/fog.png'>"); // set background image
 
-    // FUNCTION to determine the FUTURE TEMPS to display based on the current temperature
+    } else if (currentIcon == "cloudy" || currentIcon == "partly-cloudy-day") { // cloudy or partly cloudy
 
-        // loop through the data and add it to the ul
-        // new li for each new item - starting tomorrow, therefore i = 1
-        for (var i = 1; i < data.daily.data.length; i++){
-            
-            console.log(data.daily.data[i]);
+        $(cloudy).css("display", "block"); // show "cloudy" icon and description
+        $(sky).css("background-color", "#4d4d4d"); // change background color to grey
+        $(weatherIcon).html("<img src='/images/cloud.png'>"); // set background image
 
-            var future = data.daily.data[i]; // the data for one day in the forecast
-            var list = $("<li>");
-            var date = new Date(future.time*1000).toDateString(); // get future dates and convert to date string
-            var weekday = date.split(" "); // split future date string into array
-            
-            var calDay = new Array(7); // weekday array
-            calDay[0] = "Sunday";
-            calDay[1] = "Monday";
-            calDay[2] = "Tuesday";
-            calDay[3] = "Wednesday";
-            calDay[4] = "Thursday";
-            calDay[5] = "Friday";
-            calDay[6] = "Saturday";
+    } else if (currentIcon == "partly-cloudy-night") { // partly cloudy night
 
-            list.append("<li class='day'>" + weekday[0] + "</li>"); // append weekday only
-            list.append("<li class='futureIcon'><img class='futureImg'>" + "<p class='iconText'>" + future.icon + "</p>" + "</li>");
-            list.append("<li class='minTemp'>" + Math.round(future.temperatureMin) + "<sup>&degC</sup></li>");
-            list.append("<li class='maxTemp'>" + Math.round(future.temperatureMax) + "<sup>&degC</sup></li>");
+        $(cloudyNight).css("display", "block"); // show "partly cloudy night" icon and description
+        $(sky).css("background-color", "#0b155e"); // change background color to dark blue
+        $(weatherIcon).html("<img src='/images/cloudnight.png'>"); // set background image
 
-            // append the li info to the ul
-            $("#futureDays").append(list);
-            
-        }; // for loop close
+    } else { // below 0
 
+        $(sunny).css("display", "block"); //show sun icon and description
 
-        // loop to check each iconText element
-        for (var i = 1; i < data.daily.data.length; i++){
-            
-            console.log(data.daily.data[i].icon);
+    }; // if statement close
 
-            var future = data.daily.future[i].icon; // the data for one day in the forecast
-            var futureIconImg = document.getElementsByClassName("futureImg");
-            var futureSummary = document.getElementsByClassName("iconText");
-            
-            // if any of the elements of futureTempIcon array meet the condition
-            if (future == "clear-day") { // clear day
+}; // tempIcon function close
 
-                $(futureIconImg).attr("src", "/images/sun.png"); // set icon
+// FUNCTION to determine the GREETING to display based on the current time
 
-            } else if (future == "clear-night") { // clear night
+function timeGreeting() {
 
-                $(futureIconImg).attr("src", "/images/moon.png"); // set icon
+    var hours = new Date().getHours();
 
-            } else if (future == "rain") { // rain
+    if (hours >= 0 && hours < 12) { // between 5am and 11:59am
 
-                $(futureIconImg).attr("src", "/images/rain.png"); // set icon
+        $("#greeting span").html("Good morning!"); // show "Good morning"
 
-            } else if (future == "snow") { // snow
+    } else if (hours >= 12 && hours < 17) { // between 12pm and 4:59pm
 
-                $(futureIconImg).attr("src", "/images/snow.png"); // set icon
+        $("#greeting span").html("Good afternoon!"); // show "Good afternoon"
 
-            } else if (future == "sleet") { // sleet
+    } else if (hours >= 17 && hours < 20) { // between 5pm and 7:59pm
 
-                $(futureIconImg).attr("src", "/images/sleet.png"); // set icon
+        $("#greeting span").html("Good evening!"); // show "Good evening"
 
-            } else if (future == "wind") { // wind
+    } else { // between 8pm and 4:59am
 
-                $(futureIconImg).attr("src", "/images/wind.png"); // set icon
+        $("#greeting span").html("Good night!"); // show "Good night"
 
-            } else if (future == "fog") { // foggy
+    }; // if statement close
 
-                $(futureIconImg).attr("src", "/images/fog.png"); // set icon
+}; // timeGreeting function close
 
-            } else if (future == "cloudy" || future == "partly-cloudy-day") { // cloudy or partly cloudy
 
-                $(futureIconImg).attr("src", "/images/cloud.png"); // set icon
 
-            } else if (future == "partly-cloudy-night") { // partly cloudy night
 
-                $(futureIconImg).attr("src", "/images/cloudnight.png"); // set icon
+// FUNCTION to determine the FUTURE TEMPS to display based on the current temperature
+function futureTemps(data) {
+    console.log('in future temps');
 
-            } else {
+    console.log(data.daily);
 
-                $(futureIconImg).attr("src", "/images/sun.png"); // set icon
+    // loop through the data and add it to the ul
+    // new li for each new item - starting tomorrow, therefore i = 1
+    for (var i = 1; i < data.daily.data.length; i++) {
 
-            }; // if statement close
+        var future = data.daily.data[i]; // the data for one day in the forecast
+        var list = $("<li>");
+        var date = new Date(future.time * 1000).toDateString(); // get future dates and convert to date string
+        var weekday = date.split(" "); // split future date string into array
 
-        }; // for loop close
+        var calDay = new Array(7); // weekday array
+        calDay[0] = "Sunday";
+        calDay[1] = "Monday";
+        calDay[2] = "Tuesday";
+        calDay[3] = "Wednesday";
+        calDay[4] = "Thursday";
+        calDay[5] = "Friday";
+        calDay[6] = "Saturday";
 
-    }); // getJSON close
+        // Check Icons
+        var futureIcon = future.icon;
+        console.log(futureIcon);
 
-} // getWeatherData function close
+        var futureIconImg = document.getElementsByClassName("futureImg");
+        var futureSummary = document.getElementsByClassName("iconText");
+
+        // if any of the elements of futureTempIcon array meet the condition
+        if (futureIcon == "clear-day") { // clear day
+
+            $(futureIconImg).attr("src", "/images/sun.png"); // set icon
+
+        } else if (futureIcon == "clear-night") { // clear night
+
+            $(futureIconImg).attr("src", "/images/moon.png"); // set icon
+
+        } else if (futureIcon == "rain") { // rain
+
+            $(futureIconImg).attr("src", "/images/rain.png"); // set icon
+
+        } else if (futureIcon == "snow") { // snow
+
+            $(futureIconImg).attr("src", "/images/snow.png"); // set icon
+
+        } else if (futureIcon == "sleet") { // sleet
+
+            $(futureIconImg).attr("src", "/images/sleet.png"); // set icon
+
+        } else if (futureIcon == "wind") { // wind
+
+            $(futureIconImg).attr("src", "/images/wind.png"); // set icon
+
+        } else if (futureIcon == "fog") { // foggy
+
+            $(futureIconImg).attr("src", "/images/fog.png"); // set icon
+
+        } else if (futureIcon == "cloudy" || future == "partly-cloudy-day") { // cloudy or partly cloudy
+
+            $(futureIconImg).attr("src", "/images/cloud.png"); // set icon
+
+        } else if (futureIcon == "partly-cloudy-night") { // partly cloudy night
+
+            $(futureIconImg).attr("src", "/images/cloudnight.png"); // set icon
+
+        } else {
+
+            $(futureIconImg).attr("src", "/images/sun.png"); // set icon
+
+        }; // if statement close
+
+        list.append("<li class='day'>" + weekday[0] + "</li>"); // append weekday only
+        list.append("<li class='futureIcon'><img class='futureImg'>" + "<p class='iconText'>" + future.icon + "</p>" + "</li>");
+        list.append("<li class='minTemp'>" + Math.round(future.temperatureMin) + "<sup>&degC</sup></li>");
+        list.append("<li class='maxTemp'>" + Math.round(future.temperatureMax) + "<sup>&degC</sup></li>");
+
+        // append the li info to the ul
+        $("#futureDays").append(list);
+
+    }; // for loop close
+
+
+    //BEN: move all of this into the loop above
+    // loop to check each iconText element
+    //for (var i = 1; i < data.daily.data.length; i++) {
+
+    //        console.log(data.daily.data[i].icon);
+    //
+    //        var future = data.daily.future[i].icon; // the data for one day in the forecast
+    //        var futureIconImg = document.getElementsByClassName("futureImg");
+    //        var futureSummary = document.getElementsByClassName("iconText");
+
+    // if any of the elements of futureTempIcon array meet the condition
+    //        if (futureIcon == "clear-day") { // clear day
+    //
+    //            $(futureIconImg).attr("src", "/images/sun.png"); // set icon
+    //
+    //        } else if (futureIcon == "clear-night") { // clear night
+    //
+    //            $(futureIconImg).attr("src", "/images/moon.png"); // set icon
+    //
+    //        } else if (futureIcon == "rain") { // rain
+    //
+    //            $(futureIconImg).attr("src", "/images/rain.png"); // set icon
+    //
+    //        } else if (futureIcon == "snow") { // snow
+    //
+    //            $(futureIconImg).attr("src", "/images/snow.png"); // set icon
+    //
+    //        } else if (futureIcon == "sleet") { // sleet
+    //
+    //            $(futureIconImg).attr("src", "/images/sleet.png"); // set icon
+    //
+    //        } else if (futureIcon == "wind") { // wind
+    //
+    //            $(futureIconImg).attr("src", "/images/wind.png"); // set icon
+    //
+    //        } else if (futureIcon == "fog") { // foggy
+    //
+    //            $(futureIconImg).attr("src", "/images/fog.png"); // set icon
+    //
+    //        } else if (futureIcon == "cloudy" || future == "partly-cloudy-day") { // cloudy or partly cloudy
+    //
+    //            $(futureIconImg).attr("src", "/images/cloud.png"); // set icon
+    //
+    //        } else if (futureIcon == "partly-cloudy-night") { // partly cloudy night
+    //
+    //            $(futureIconImg).attr("src", "/images/cloudnight.png"); // set icon
+    //
+    //        } else {
+    //
+    //            $(futureIconImg).attr("src", "/images/sun.png"); // set icon
+    //
+    //        }; // if statement close
+
+    //}; // for loop close
+
+
+}; //close futureTemps
