@@ -1,0 +1,552 @@
+/** CSS styles **/
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    width: 100vw;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body{
+    width: 99.9%;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+}
+
+h1{
+    padding: 0.9em;
+}
+
+h2{
+    padding: 0.8em;
+}
+
+h3{
+    padding: 0.7em;
+}
+
+h4{
+    padding: 0.6em;
+}
+
+h5{
+    padding: 0.5em;    
+}
+
+h6{
+    padding: 0.5em;
+}
+
+
+/** SUN CIRCLE **/
+.sunCircleContainer{
+    width: 100%;
+    height: 60em;
+    margin: auto;
+    display: block;
+    float: left;
+    padding-bottom: 3em;
+}
+
+.circleGroup{
+    list-style: none;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
+
+.circle{
+    display: inline-block;
+    position: absolute;
+    top: 30%;
+    left: 42%;
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    box-shadow: 0 0.2em 0.5em 0 rgba(0,0,0,0.2);
+    -webkit-transition: .15s;
+    transition: .15s;
+    background-color: #F1F1F1;
+}
+
+.circle:hover, .circleMoons:hover{
+    -webkit-transform: scale(1.5,1.5);
+    transform: scale(1.5,1.5);
+}
+
+.circle:hover{
+    box-shadow: 0 0 0.75em 0 #d1fcff;
+}
+
+.circleMoons{
+    display: block;
+    position: absolute;
+    top: 32%;
+    left: 44%;
+    width: 7em;
+    height: 7em;
+    border-radius: 50%;
+    box-shadow: 0 0.2em 0.5em 0 rgba(0,0,0,0.2);
+    -webkit-transition: .15s;
+    transition: .15s;
+}
+
+.circleMoons:hover{
+/*    box-shadow: 0 0 0.75em 0 #fcfcfc;*/
+}
+
+.circle:nth-child(odd){
+}
+
+.circle:nth-child(even){
+}
+
+.circleGroup #currentTemp{
+    background-color: #f5f4ed;
+}
+
+.circle h1, .circle h5, .circle h6, .circle p{
+    width: 75%;
+    text-align: center;
+}
+
+.circle h1{
+    margin: 0 auto;
+    padding: 0.2em 0;
+    font-size: 5em;
+    line-height: 1em;
+}
+
+.circle h5{
+    padding: 0;
+    font-size: 1.4em;
+}
+
+.circle h5:first-child{
+    margin: 2em auto 0;
+}
+
+.circle h5:last-child{
+    margin: 0 auto;
+}
+
+.circle h6{
+    margin: 2.1em auto 0;
+    padding-bottom: 0.25em;
+    text-transform: uppercase;
+}
+
+.circle p{
+    margin: auto;
+    font-size: 1.25em;
+    line-height: 1.1em;
+}
+
+.circle sup{
+    top: -0.4em;
+    font-size: 55%;
+}
+
+#circleTime{
+    color: #f5f5f5;
+}
+
+#circleMax{
+    background-image: linear-gradient(20deg, #fc6076 0%, #ff9a44 100%);
+    color: #f5f5f5;
+}
+
+#circleUv{
+    background-image: linear-gradient(-20deg, #f6d365 0%, #fda085 100%);
+}
+
+#circleWind{
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+#circleHumid{
+    background-image: linear-gradient(to bottom, #feada6 0%, #f5efef 100%);
+}
+
+#circleFeels{
+    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+    color: #f5f5f5;
+}
+
+#circleDate{
+    color: #f5f5f5;
+}
+
+#currentMaxTemp, #feelsTemp{
+    font-size: 2em;
+    color: #f5f5f5;
+}
+
+.circleMoons h6{
+    width: 75%;
+    text-align: center;
+    color: #f5f5f5;
+    line-height: 1.1em;
+    margin: 2em auto 0;
+}
+
+.circleMoons:nth-child(12) h6, .circleMoons:nth-child(16) h6{
+    margin: 2.5em auto 0;
+}
+
+/** rotate li circles for placement, space with translate and remove rotation for text **/
+
+.circle:nth-of-type(1){
+    transform: rotate(293deg) translate(15.5em) rotate(-293deg);
+}
+
+.circle:nth-of-type(2){
+    transform: rotate(338deg) translate(15.5em) rotate(-338deg);
+}
+
+.circle:nth-of-type(3){
+    transform: rotate(23deg) translate(15.5em) rotate(-23deg);
+}
+
+.circle:nth-of-type(4){
+    transform: rotate(68deg) translate(15.5em) rotate(-68deg);
+}
+
+.circle:nth-of-type(5){
+    transform: rotate(113deg) translate(15.5em) rotate(-113deg);
+}
+
+.circle:nth-of-type(6){
+    transform: rotate(158deg) translate(15.5em) rotate(-158deg);
+}
+
+.circle:nth-of-type(7){
+    transform: rotate(203deg) translate(15.5em) rotate(-203deg);
+}
+
+.circle:nth-of-type(8){
+    transform: rotate(248deg) translate(15.5em) rotate(-248deg);
+}
+
+/** centre circle **/
+.circle:nth-of-type(9){
+    width: 18em;
+    height: 18em;
+    transform: rotate(228deg) translate(5.75em) rotate(-228deg);
+}
+
+
+/** circleOutside Moons **/
+.circleMoons:nth-of-type(10){
+    transform: rotate(270deg) translate(23em) rotate(-270deg);
+}
+
+.circleMoons:nth-of-type(11){
+    transform: rotate(315deg) translate(23em) rotate(-315deg);
+}
+
+.circleMoons:nth-of-type(12){
+    transform: rotate(360deg) translate(23em) rotate(-360deg);
+}
+
+.circleMoons:nth-of-type(13){
+    transform: rotate(45deg) translate(23em) rotate(-45deg);
+}
+
+.circleMoons:nth-of-type(14){
+    transform: rotate(90deg) translate(23em) rotate(-90deg);
+}
+
+.circleMoons:nth-of-type(15){
+    transform: rotate(135deg) translate(23em) rotate(-135deg);
+}
+
+.circleMoons:nth-of-type(16){
+    transform: rotate(180deg) translate(23em) rotate(-180deg);
+}
+
+.circleMoons:nth-of-type(17){
+    transform: rotate(225deg) translate(23em) rotate(-225deg);
+}
+/*****/
+
+
+/** STYLES **/
+#currently{
+    color: white;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+#greeting{
+    color: white;
+    padding: 1% 1.5%;
+}
+
+#term li{
+    display: none;
+}
+
+/** FUTURE TEMPS **/
+#future{
+    width: 95%;
+    height: 25%;
+    font-family: sans-serif;
+    padding: 2.5% 2.5% 0;
+    margin: auto;
+    float: left;
+}
+
+#future h3{
+    padding: 1% 0;
+    font-size: 2em;
+}
+
+#futureDays{
+    list-style-type: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.ahead{
+    display: inline-block;
+    width: 9.5%;
+    height: 6em;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 0.55em;
+    padding: 1em;
+    font-size: 1em;
+    float: left;
+}
+
+.ahead:first-child{
+    margin-left: 0;
+}
+
+.ahead:last-child{
+    margin-right: 0;
+}
+
+#futureDays h5{
+    padding: 0;
+    margin: 0.5em 0 0;
+}
+
+.day{
+    text-align: center;
+}
+
+.futureIcon{
+    width: 100%;
+    margin: 0;
+}
+
+.futureImg{
+    width: 100%;
+}
+
+.iconText{
+    display: none;
+}
+
+.minTemp, .maxTemp{
+    font-size: 1.5em;
+    display: inline-block;
+    width: 40%;
+    padding: 0 5%;
+    margin: auto;
+    float: left;
+}
+
+.minTemp sup, .maxTemp sup{
+    font-size: 0.5em;
+}
+
+.minTemp{
+    color: #005bea;
+}
+
+.maxTemp{
+    color: #f43b47;
+}
+
+/** RESPONSIVE SETTINGS **/
+
+@media screen and (min-width: 1136px){
+
+    #futureDays > li{
+        
+    }
+    
+}
+
+@media screen and (min-width: 901px) and (max-width: 1135px){
+
+    .otherInfo ul li{
+        display: inline-block;
+        padding: 3% 1.95% 0.5%;
+        width: 25%;
+        border: 0.15em solid white;
+        border-radius: 1em;
+    }
+    
+    .otherInfo ul li h3{
+        font-size: 1.3em;
+    }
+    
+    #futureDays > li{
+        
+    }
+
+    .minTemp, .maxTemp{
+        font-size: 1.5em;
+        display: inline-block;
+        width: 40%;
+    }
+    
+    #futureDays > li:nth-child(5){
+        border-right: none;
+    }
+
+    #futureDays > li:nth-child(6), #futureDays > li:last-child{
+        display: none;
+    }
+    
+}
+
+@media screen and (min-width: 845px) and (max-width: 900px){
+    
+    .circle{
+        top: 30%;
+        left: 42%;
+    }
+    
+    .circleMoons{
+        top: 32%;
+        left: 44%;
+    }
+
+    #tempIcon{
+        width: 100%;
+        height: 100%;
+    }
+
+    #tempDesc{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left;
+        width: 100%;
+        float: left;
+        padding: 2%;
+        text-align: center;
+    }
+
+    .otherInfo ul li{
+        display: inline-block;
+        padding: 3% 1.95% 0.5%;
+        width: 25%;
+        border: 0.15em solid white;
+        border-radius: 1em;
+    }
+    
+    .otherInfo ul li h3{
+        font-size: 1.4em;
+    }
+    
+    #futureDays > li{
+        
+    }
+    
+    #futureDays > li:nth-child(5){
+        border-right: none;
+    }
+
+    #futureDays > li:nth-child(6), #futureDays > li:last-child{
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width: 844px){
+    
+    .sunCircleContainer{
+        height: 45em;
+    }
+    
+    #circleGroup{
+        transform: scale(0.8,0.8);
+        margin-top: 40%;
+    }
+    
+    .circle{
+        top: 10%;
+        left: 42%;
+    }
+    
+    .circleMoons{
+        top: 10%;
+        left: 44%;
+    }
+
+    #tempIcon{
+        width: 100%;
+        height: 100%;
+    }
+
+    #tempDesc{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left;
+        width: 100%;
+        float: left;
+        padding: 2%;
+        text-align: center;
+    }
+
+    .otherInfo ul li{
+        display: inline-block;
+        padding: 3% 1.95% 0.5%;
+        width: 25%;
+        border: 0.15em solid white;
+        border-radius: 1em;
+    }
+    
+    .otherInfo ul li h3{
+        font-size: 1.4em;
+    }
+
+    .otherInfo ul li p{
+        font-size: 1.2em;
+    }
+    
+    #future h3{
+        text-align: center;
+        font-size: 2em;
+    }
+
+    #futureDays > li{
+        display: block;
+        width: 65%;
+        margin: auto;
+        border-bottom: 0.1em solid #e3e5e6;
+        border-right: none;
+    }
+    
+    #futureDays > li:last-child{
+        border-bottom: none;
+    }
+    
+    #futureDays img{
+        width: 50%;
+    }
+    
+}
