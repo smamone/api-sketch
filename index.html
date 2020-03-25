@@ -2,133 +2,161 @@
 <html>
 
     <head>
-        <title>Weather App</title>
+    <title>Weather App</title>
 
-        <link rel="stylesheet" type="text/css" href="styles.css" />
-        <link rel="stylesheet" type="text/css" href="css/normalize.css" /> <!-- SkeletonCSS -->
-        <link rel="stylesheet" type="text/css" href="css/skeleton.css" /> <!-- SkeletonCSS -->
-    </head>
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" /> <!-- SkeletonCSS -->
+    <link rel="stylesheet" type="text/css" href="css/skeleton.css" /> <!-- SkeletonCSS -->
+</head>
 
-    <body>
-        
-        <div class="sunCircleContainer">
-        
-            <ul id="circleGroup">
-                <li id="circleTime" class="circle"> <!-- 1 -->
-                    <h6 id="" class="headCircleGroup">Time</h6>
-                    <p id="time" class="pCircleGroup"><span></span></p> <!-- time -->
+<body>
+
+    <div class="sunCircleContainer">
+
+        <ul id="circleGroup">
+            <li id="circleTime" class="circle">
+                <!-- 1 -->
+                <h6 id="" class="headCircleGroup">Time</h6>
+                <p id="time" class="pCircleGroup"><span></span></p> <!-- time -->
+            </li>
+            <li id="circleMax" class="circle">
+                <!-- 2 -->
+                <h6 id="" class="headCircleGroup">Today's Max</h6>
+                <p id="currentMaxTemp" class="pCircleGroup"><span></span><sup>&deg;C</sup></p> <!-- today's max temp -->
+            </li>
+            <li id="circleSummary" class="circle">
+                <!-- 3 -->
+                <h6 id="" class="headCircleGroup">Summary</h6>
+                <p id="" class="pCircleGroup"><span id="desc"></span></p> <!-- summary -->
+            </li>
+            <li id="circleUv" class="circle">
+                <!-- 4 -->
+                <h6 id="" class="headCircleGroup">UV Index</h6>
+                <p id="uv" class="pCircleGroup"><span></span></p>
+            </li>
+            <li id="circleWind" class="circle">
+                <!-- 5 -->
+                <h6 id="" class="headCircleGroup">Wind Speed</h6>
+                <p id="wind" class="pCircleGroup"><span></span>km/h</p>
+            </li>
+            <li id="circleHumid" class="circle">
+                <!-- 6 -->
+                <h6 id="" class="headCircleGroup">Humidity</h6>
+                <p id="humidity" class="pCircleGroup"><span></span>%</p>
+            </li>
+            <li id="circleFeels" class="circle">
+                <!-- 7 -->
+                <h6 id="" class="headCircleGroup">Feels Like</h6>
+                <p id="feelsTemp" class="pCircleGroup"><span></span><sup>&deg;C</sup></p> <!-- feels like temp -->
+            </li>
+            <li id="circleDate" class="circle">
+                <!-- 8 -->
+                <h6 id="" class="headCircleGroup">Date</h6>
+                <p id="date" class="pCircleGroup"><span></span></p> <!-- date -->
+            </li>
+            <li id="currentTemp" class="circle">
+                <!-- 9 -->
+                <h5 class="pCurrent">Current temp is</h5>
+                <h1 id="temp"><span></span><sup class="celcius">&deg;C</sup></h1> <!-- current temp -->
+                <h5 id="location" class="pCurrent">in <span></span></h5> <!-- location -->
+            </li>
+
+            <!-- Moon Phases -->
+            <li class="circleMoons">
+                <!-- 10 -->
+                <h6 id="" class="headCircleGroup">First Quarter</h6>
+            </li>
+            <li class="circleMoons">
+                <!-- 11 -->
+                <h6 id="" class="headCircleGroup">Waxing Crescent</h6>
+            </li>
+            <li class="circleMoons">
+                <!-- 12 -->
+                <h6 id="" class="headCircleGroup">New Moon</h6>
+            </li>
+            <li class="circleMoons">
+                <!-- 13 -->
+                <h6 id="" class="headCircleGroup">Waning Crescent</h6>
+            </li>
+            <li class="circleMoons">
+                <!-- 14 -->
+                <h6 id="" class="headCircleGroup">Third Quarter</h6>
+            </li>
+            <li class="circleMoons">
+                <!-- 15 -->
+                <h6 id="" class="headCircleGroup">Waning Gibbous</h6>
+            </li>
+            <li class="circleMoons">
+                <!-- 16 -->
+                <h6 id="" class="headCircleGroup">Full Moon</h6>
+            </li>
+            <li class="circleMoons">
+                <!-- 17 -->
+                <h6 id="" class="headCircleGroup">Waxing Gibbous</h6>
+            </li>
+        </ul>
+
+    </div> <!-- sunCircleContainer -->
+
+    <div id="currently">
+
+        <div id="tempDesc">
+
+            <ul id="term">
+                <li id="sunny">
+                    <!-- sunny -->
                 </li>
-                <li id="circleMax" class="circle"> <!-- 2 -->
-                    <h6 id="" class="headCircleGroup">Today's Max</h6>
-                    <p id="currentMaxTemp" class="pCircleGroup"><span></span><sup>&deg;C</sup></p> <!-- today's max temp -->
+                <li id="rain">
+                    <!-- raining -->
                 </li>
-                <li id="circleSummary" class="circle"> <!-- 3 -->
-                    <h6 id="" class="headCircleGroup">Summary</h6>
-                    <p id="" class="pCircleGroup"><span id="desc"></span></p> <!-- summary -->
+                <li id="windy">
+                    <!-- windy -->
                 </li>
-                <li id="circleUv" class="circle"> <!-- 4 -->
-                    <h6 id="" class="headCircleGroup">UV Index</h6>
-                    <p id="uv" class="pCircleGroup"><span></span></p>
+                <li id="cloudy">
+                    <!-- cloudy -->
                 </li>
-                <li id="circleWind" class="circle"> <!-- 5 -->
-                    <h6 id="" class="headCircleGroup">Wind Speed</h6>
-                    <p id="wind" class="pCircleGroup"><span></span>km/h</p>
+                <li id="foggy">
+                    <!-- foggy -->
                 </li>
-                <li id="circleHumid" class="circle"> <!-- 6 -->
-                    <h6 id="" class="headCircleGroup">Humidity</h6>
-                    <p id="humidity" class="pCircleGroup"><span></span>%</p>
+                <li id="storms">
+                    <!-- storms -->
                 </li>
-                <li id="circleFeels" class="circle"> <!-- 7 -->
-                    <h6 id="" class="headCircleGroup">Feels Like</h6>
-                    <p id="feelsTemp" class="pCircleGroup"><span></span><sup>&deg;C</sup></p> <!-- feels like temp -->
+                <li id="freezing">
+                    <!-- freezing -->
                 </li>
-                <li id="circleDate" class="circle"> <!-- 8 -->
-                    <h6 id="" class="headCircleGroup">Date</h6>
-                    <p id="date" class="pCircleGroup"><span></span></p> <!-- date -->
+                <li id="frost">
+                    <!-- frost -->
                 </li>
-                <li id="currentTemp" class="circle"> <!-- 9 -->
-                    <h5 class="pCurrent">Current temp is</h5>
-                    <h1 id="temp"><span></span><sup class="celcius">&deg;C</sup></h1> <!-- current temp -->
-                    <h5 id="location" class="pCurrent">in <span></span></h5> <!-- location -->
+                <li id="snowfall">
+                    <!-- snowfall -->
                 </li>
-                
-                <!-- Moon Phases -->
-                <li class="circleMoons"> <!-- 10 -->
-                    <h6 id="" class="headCircleGroup">First Quarter</h6>
+                <li id="hail">
+                    <!-- hail -->
                 </li>
-                <li class="circleMoons"> <!-- 11 -->
-                    <h6 id="" class="headCircleGroup">Waxing Crescent</h6>
+                <li id="night">
+                    <!-- night -->
                 </li>
-                <li class="circleMoons"> <!-- 12 -->
-                    <h6 id="" class="headCircleGroup">New Moon</h6>
-                </li>
-                <li class="circleMoons"> <!-- 13 -->
-                    <h6 id="" class="headCircleGroup">Waning Crescent</h6>
-                </li>
-                <li class="circleMoons"> <!-- 14 -->
-                    <h6 id="" class="headCircleGroup">Third Quarter</h6>
-                </li>
-                <li class="circleMoons"> <!-- 15 -->
-                    <h6 id="" class="headCircleGroup">Waning Gibbous</h6>
-                </li>
-                <li class="circleMoons"> <!-- 16 -->
-                    <h6 id="" class="headCircleGroup">Full Moon</h6>
-                </li>
-                <li class="circleMoons"> <!-- 17 -->
-                    <h6 id="" class="headCircleGroup">Waxing Gibbous</h6>
+                <li id="cloudyNight">
+                    <!-- cloudy night -->
                 </li>
             </ul>
-        
-        </div> <!-- sunCircleContainer -->
 
-        <div id="currently">
+        </div> <!-- tempDesc -->
 
-            <div id="tempDesc">
+    </div> <!-- currently -->
 
-                <ul id="term">
-                    <li id="sunny"> <!-- sunny -->
-                    </li>
-                    <li id="rain"> <!-- raining -->
-                    </li>
-                    <li id="windy"> <!-- windy -->
-                    </li>
-                    <li id="cloudy"> <!-- cloudy -->
-                    </li>
-                    <li id="foggy"> <!-- foggy -->
-                    </li>
-                    <li id="storms"> <!-- storms -->
-                    </li>
-                    <li id="freezing"> <!-- freezing -->
-                    </li>
-                    <li id="frost"> <!-- frost -->
-                    </li>
-                    <li id="snowfall"> <!-- snowfall -->
-                    </li>
-                    <li id="hail"> <!-- hail -->
-                    </li>
-                    <li id="night"> <!-- night -->
-                    </li>
-                    <li id="cloudyNight"> <!-- cloudy night -->
-                    </li>
-                </ul>
+    <div id="future">
 
-            </div> <!-- tempDesc -->
+        <h3>The week ahead:</h3>
 
-        </div> <!-- currently -->
+        <ul id="futureDays">
+        </ul>
 
-        <div id="future">
+    </div>
+    <!--future-->
 
-            <h3>The week ahead:</h3>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/scripts.js"></script>
 
-            <ul id="futureDays">
-            </ul>
-
-        </div> <!--future-->
-
-        <script src="js/jquery-3.4.1.js"></script>
-        <script src="js/moment-with-locales.js"></script>
-        <script src="js/scripts.js"></script>
-        
-    </body>
-
-</html>
+</body></html>
