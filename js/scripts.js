@@ -26,6 +26,7 @@ $(document).ready(function () {
 
         function error(err) {
 
+            // display error
             console.log(err);
 
             // default location is Canberra lat long
@@ -41,6 +42,45 @@ $(document).ready(function () {
     } // close if statement
 
 }); // close document ready
+
+
+// FUNCTION to determine the GREETING to display based on the current time
+function timeGreeting() {
+
+    // get the current hour
+    var hours = new Date().getHours();
+
+    if (hours >= 0 && hours < 12) { // between 5am and 11:59am
+
+        $("#greeting h2").html("Good morning!"); // show "Good morning"
+        $("#circleTime").css(
+            "background-image", "linear-gradient(to top, #9795f0 0%, #fbc8d4 100%)"
+        ); // change background to gradient for morning colours
+
+    } else if (hours >= 12 && hours < 17) { // between 12pm and 4:59pm
+
+        $("#greeting h2").html("Good afternoon!"); // show "Good afternoon"
+        $("#circleTime").css(
+            "background-image", "linear-gradient(to top, #4481eb 0%, #04befe 100%)"
+        ); // change background to gradient for afternoon colours
+
+    } else if (hours >= 17 && hours < 20) { // between 5pm and 7:59pm
+
+        $("#greeting h2").html("Good evening!"); // show "Good evening"
+        $("#circleTime").css(
+            "background-image", "linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%)"
+        ); // change background to gradient for evening colours
+
+    } else { // between 8pm and 4:59am
+
+        $("#greeting h2").html("Good night!"); // show "Good night"
+        $("#circleTime").css(
+            "background-image", "linear-gradient(to right, #243949 0%, #517fa4 100%)"
+        ); // change background to gradient for night colours
+
+    } // close if statement
+
+} // close timeGreeting function
 
 
 // --- FUNCTIONS --- //
@@ -145,11 +185,13 @@ function getWeatherData(currentLocation) {
 function updateTimeTemp(currently) {
     
     console.log('in update time fn')
-
-    var currentTemp = currently.temperature; // get current temperature
+    
+    // get current temperature from API and time from moment.js
+    var currentTemp = currently.temperature;
     var currentTime = moment(currentTime).format('dddd, MMMM Do');
     
-    startTime(); // call startTime function
+    // call startTime function
+    startTime();
 
     // FUNCTION to get current TIME and add to html tag
     function startTime() {
@@ -157,7 +199,7 @@ function updateTimeTemp(currently) {
         var today = new Date();
         var h = today.getHours();
         var m = today.getMinutes();
-        var session = "AM";m
+        var session = "AM";
         
         // set AM or PM based on current hour
         if(h == 0) {
@@ -185,16 +227,15 @@ function updateTimeTemp(currently) {
     // DATE
     // get current date and add to html tag
     $("#date span").html(currentTime);
-
-    // TEMP
-    // get current temp and add to html tag
     
-    startTemp(); // call startTemp function
+    // call startTemp function
+    startTemp();
     
     // FUNCTION to get current TEMP and add to html tag
     function startTemp() {
         
-        $("#temp span").html(currentTemp.toFixed(1)); // round to 1 decimal place
+        // round to 1 decimal place and add to tag
+        $("#temp span").html(currentTemp.toFixed(1));
 
         // update data every second
         setTimeout(startTemp, 1000);
@@ -207,8 +248,9 @@ function updateTimeTemp(currently) {
 // FUNCTION to determine the SEASON for current date and change colour of circle accordingly
 function dateSeason() {
 
+    // get current month with moment.js
     var month = moment().format('MMMM');
-    console.log(month);
+//    console.log(month);
 
     if (month == "December" || month == "January" || month == "February") { // if month is Dec, Jan or Feb - Summer
 
@@ -220,19 +262,19 @@ function dateSeason() {
 
         $("#circleDate").css(
             "background-image", "linear-gradient(to right, #f78ca0 0%, #f9748f 19%, #fd868c 60%, #fe9a8b 100%)"
-        ); // set background to gradient
+        ); // set background to gradient to autumn colours
 
     } else if (month == "June" || month == "July" || month == "August") { // if month is Jun, Jul or Aug - Winter
 
         $("#circleDate").css(
             "background-image", "linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%)"
-        ); // set background to gradient
+        ); // set background to gradient to winter colours
 
     } else { // if month is Sep, Oct or Nov - Spring
 
         $("#circleDate").css(
             "background-image", "linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%)"
-        ); // set background to gradient
+        ); // set background to gradient to spring colours
 
     } // close if statement
 
@@ -244,19 +286,20 @@ function tempIcon(data) {
 
     var circleCurrentSummary = document.getElementById("circleSummary");
     var weatherIcon = document.getElementById("currentTemp");
-    var currentIcon = data.currently.icon; // get current temperature icon
-
-    //console.log(currentIcon); // show current icon
+    
+    // get current temperature icon from API
+    var currentIcon = data.currently.icon;
+    //console.log(currentIcon);
 
     if (currentIcon == "clear") { // clear day
 
         $(circleCurrentSummary).css(
             "background-image", "linear-gradient(to top, #fff1eb 0%, #ace0f9 100%)"
         ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Not specified"); // add alt tag for screen readers to represent summary
+        $(circleCurrentSummary).attr("alt", "Clear"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/sun.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/sun.jpg)",
+            "background-size":"cover"
         }); // set background image
         
     } else if (currentIcon == "clear-night") { // clear night
@@ -267,8 +310,8 @@ function tempIcon(data) {
         }); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Clear"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/night.jpg)",
-            "background-size": "cover",
+            "background-image":"url(/images/night.jpg)",
+            "background-size":"cover",
         }); // set background image
         $("#currentTemp").css(
             "color", "#FFFFFF"
@@ -281,8 +324,8 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Rain"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/rain.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/rain.jpg)",
+            "background-size":"cover"
         }); // set background image
         $("#currentTemp").css(
             "color", "#FFFFFF"
@@ -306,8 +349,8 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Sleet"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/sleet.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/sleet.jpg)",
+            "background-size":"cover"
         }); // set background image
 
     } else if (currentIcon == "wind") { // wind
@@ -317,9 +360,18 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Windy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/wind.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/wind.jpg)",
+            "background-size":"cover"
         }); // set background image
+        $("#currentTemp h5:first-child").css(
+            "color", "#000000"
+        ); // change text color to black
+        $("#temp").css(
+            "color", "#000000"
+        ); // change text color to black
+        $("#location").css(
+            "color", "#FFFFFF"
+        ); // change text color to white
 
     } else if (currentIcon == "fog") { // foggy
 
@@ -328,8 +380,9 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Fog"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/fog.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/fog.jpg)",
+            "background-size":"cover",
+            "background-position":"right"
         }); // set background image
         $("#currentTemp").css(
             "color", "#FFFFFF"
@@ -342,8 +395,8 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/cloud.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/cloud.jpg)",
+            "background-size":"cover"
         }); // set background image
 
     } else if (currentIcon == "partly-cloudy-day") { // partly cloudy
@@ -353,8 +406,8 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Partly cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/partcloud.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/partcloud.jpg)",
+            "background-size":"cover"
         }); // set background image
 
     } else if (currentIcon == "partly-cloudy-night") { // partly cloudy night
@@ -365,12 +418,18 @@ function tempIcon(data) {
         }); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Partly cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/cloudnight.jpg)",
-            "background-size": "cover"
+            "background-image":"url(/images/cloudnight.jpg)",
+            "background-size":"cover"
         }); // set background image
-        $("#currentTemp").css(
+        $("#currentTemp h5:first-child").css(
             "color", "#FFFFFF"
         ); // change text color to white
+        $("#temp").css(
+            "color", "#FFFFFF"
+        ); // change text color to white
+        $("#location").css(
+            "color", "#000000"
+        ); // change text color to black
 
     } else { // other
 
@@ -384,47 +443,10 @@ function tempIcon(data) {
 } // close tempIcon function
 
 
-// FUNCTION to determine the GREETING to display based on the current time
-function timeGreeting() {
-
-    var hours = new Date().getHours();
-
-    if (hours >= 0 && hours < 12) { // between 5am and 11:59am
-
-        $("#greeting span").html("Good morning!"); // show "Good morning"
-        $("#circleTime").css(
-            "background-image", "linear-gradient(to top, #9795f0 0%, #fbc8d4 100%)"
-        );
-
-    } else if (hours >= 12 && hours < 17) { // between 12pm and 4:59pm
-
-        $("#greeting span").html("Good afternoon!"); // show "Good afternoon"
-        $("#circleTime").css(
-            "background-image", "linear-gradient(to top, #4481eb 0%, #04befe 100%)"
-        );
-
-    } else if (hours >= 17 && hours < 20) { // between 5pm and 7:59pm
-
-        $("#greeting span").html("Good evening!"); // show "Good evening"
-        $("#circleTime").css(
-            "background-image", "linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%)"
-        );
-
-    } else { // between 8pm and 4:59am
-
-        $("#greeting span").html("Good night!"); // show "Good night"
-        $("#circleTime").css(
-            "background-image", "linear-gradient(to right, #243949 0%, #517fa4 100%)"
-        );
-
-    } // close if statement
-
-} // close timeGreeting function
-
-
 // FUNCTION to determin the MOON PHASES for the current day
 function moonPhase(data) {
 
+    // get current moon phase from API
     var moon = data.daily.data[0].moonPhase;
     console.log(moon);
 
@@ -438,7 +460,7 @@ function moonPhase(data) {
     // 0.75 - third quarter moon
     // 0.76-0.99 - waxing crescent
 
-    if (moon == 0.25) { // 0.25 - first quarter moon -li 1-
+    if (moon == 0.25) { // 0.25 - first quarter moon -r1, li1-
 
         $("#moonRow1 .circleMoons:nth-child(1)").css({
             "background":"linear-gradient(90deg, #FFFFFF00 49%, #EEEEEE 51%)",
@@ -448,7 +470,7 @@ function moonPhase(data) {
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon >= 0.76 && moon <= 0.99) { // 0.76-0.99 - waxing crescent -li 2-
+    } else if (moon >= 0.76 && moon <= 0.99) { // 0.76-0.99 - waxing crescent -r1, li2-
 
         $("#moonRow1 .circleMoons:nth-child(2)").css({
             "background-color": "#FFFFFF25",
@@ -459,7 +481,7 @@ function moonPhase(data) {
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon >= 0.01 && moon <= 0.24) { // 0.01-0.24 - waning crescent -li 4-
+    } else if (moon >= 0.01 && moon <= 0.24) { // 0.01-0.24 - waning crescent -r1, li4-
 
         $("#moonRow1 .circleMoons:nth-child(4)").css({
             "background-color": "#FFFFFF25",
@@ -470,7 +492,7 @@ function moonPhase(data) {
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon == 0.75) { // 0.75 - third quarter moon -li 1-
+    } else if (moon == 0.75) { // 0.75 - third quarter moon -r2 li1-
 
         $("#moonRow2 .circleMoons:nth-child(1)").css({
             "background": "linear-gradient(-90deg, #FFFFFF00 49%, #EEEEEE 51%)",
@@ -481,7 +503,7 @@ function moonPhase(data) {
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon >= 0.26 && moon <= 0.49) { // 0.26-0.49 - waning gibbous -li 2-
+    } else if (moon >= 0.26 && moon <= 0.49) { // 0.26-0.49 - waning gibbous -r2 li2-
 
         $("#moonRow2 .circleMoons:nth-child(2)").css({
             "background-color": "#dedede",
@@ -492,7 +514,7 @@ function moonPhase(data) {
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon == 0.5) { // 0.5 - full moon -li 3-
+    } else if (moon == 0.5) { // 0.5 - full moon -r2 li3-
 
         $("#moonRow2 .circleMoons:nth-child(3)").css({
             "background-image":"linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
@@ -502,7 +524,7 @@ function moonPhase(data) {
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon >= 0.51 && moon <= 0.74) { // 0.51-0.74 - waxing gibbous -li 4-
+    } else if (moon >= 0.51 && moon <= 0.74) { // 0.51-0.74 - waxing gibbous -r2 li4-
 
         $("#moonRow2 .circleMoons:nth-child(4)").css({
             "background-color": "#dedede",
@@ -513,7 +535,7 @@ function moonPhase(data) {
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else { // 0 - new moon -li 3-
+    } else { // 0 - new moon -r1 li3-
 
         $("#moonRow1 .circleMoons:nth-child(3)").css(
             "box-shadow", "0 0 0.75em 0 #fcfcfc"
@@ -531,8 +553,7 @@ function moonPhase(data) {
 function futureTemps(data) {
     
     console.log('in future temps');
-
-    console.log(data.daily);
+//    console.log(data.daily);
 
     // loop through the data and add it to the ul
     // new li for each new item - starting tomorrow, therefore i = 1
@@ -681,7 +702,6 @@ function returnIcon(icon) {
 
 
 // FUNCTION to create SLIDER for MOON PHASES
-
 function moonSlide(event) { // function to hide/show moon phase div by sliding
 
     $("#moonPhases").slideToggle("slow", "linear"); // toggle the slide show/hide of moon phases div depending on its current state
@@ -702,11 +722,11 @@ function moonSlide(event) { // function to hide/show moon phase div by sliding
     
 } // close futureSlide function
 
-$("#moonButton").click(moonSlide); // call the futureSlide function on moonButton click
+// call the futureSlide function on moonButton click
+$("#moonButton").click(moonSlide);
 
 
 // FUNCTION to create SLIDER for FUTURE temps
-
 function futureSlide(event) { // function to hide/show future div by sliding
 
     $("#future").slideToggle("slow", "linear"); // toggle the slide show/hide of future div depending on its current state
@@ -726,4 +746,5 @@ function futureSlide(event) { // function to hide/show future div by sliding
     
 } // close futureSlide function
 
-$("#futureButton").click(futureSlide); // call the futureSlide function on futureButton click
+// call the futureSlide function on futureButton click
+$("#futureButton").click(futureSlide);
