@@ -103,10 +103,6 @@ h6{
     transition: .15s;
 }
 
-.circleMoons:hover{
-/*    box-shadow: 0 0 0.75em 0 #fcfcfc;*/
-}
-
 .circleGroup #currentTemp{
     background-color: #f5f4ed;
 }
@@ -264,10 +260,18 @@ h6{
     display: block;
 }
 
+#moonRow1{
+    
+}
+
+#moonRow2{
+    
+}
+
 #moonButton{
 	float: left;
 	width: 100%;
-	height: 5.2em;
+	height: 5em;
 	text-align: center;
     background-color: #424242;
 	display: none;
@@ -283,35 +287,35 @@ h6{
     font-size: 1.9em;
 }
 
-.circleMoons:nth-of-type(1){
+#moonRow1 .circleMoons:nth-of-type(1){
     transform: rotate(271deg) translate(23em) rotate(-271deg);
 }
 
-.circleMoons:nth-of-type(2){
+#moonRow1 .circleMoons:nth-of-type(2){
     transform: rotate(316deg) translate(23em) rotate(-316deg);
 }
 
-.circleMoons:nth-of-type(3){
+#moonRow1 .circleMoons:nth-of-type(3){
     transform: rotate(360deg) translate(23em) rotate(-360deg);
 }
 
-.circleMoons:nth-of-type(4){
+#moonRow1 .circleMoons:nth-of-type(4){
     transform: rotate(45deg) translate(23em) rotate(-45deg);
 }
 
-.circleMoons:nth-of-type(5){
+#moonRow2 .circleMoons:nth-of-type(1){
     transform: rotate(88deg) translate(23em) rotate(-88deg);
 }
 
-.circleMoons:nth-of-type(6){
+#moonRow2 .circleMoons:nth-of-type(2){
     transform: rotate(135deg) translate(23em) rotate(-135deg);
 }
 
-.circleMoons:nth-of-type(7){
+#moonRow2 .circleMoons:nth-of-type(3){
     transform: rotate(180deg) translate(23em) rotate(-180deg);
 }
 
-.circleMoons:nth-of-type(8){
+#moonRow2 .circleMoons:nth-of-type(4){
     transform: rotate(225deg) translate(23em) rotate(-225deg);
 }
 /*****/
@@ -429,6 +433,7 @@ h6{
     padding: 0;
     margin: 0 0.1em;
     float: left;
+    text-shadow: 0 0 5px #a6a6a6;
 }
 
 .minTemp sup, .maxTemp sup{
@@ -465,12 +470,6 @@ h6{
     .circleMoons{
         left: 44.2%;
     }
-
-    .minTemp, .maxTemp{
-        font-size: 1.5em;
-        display: inline-block;
-        width: 40%;
-    }
     
 }
 
@@ -503,26 +502,57 @@ h6{
 @media screen and (min-width: 740px) and (max-width: 874px){
     
     .sunCircleContainer{
-        height: 48em;
+        min-height: 46.8em; /* allow height to adjust based on slideToggle */
+        padding-bottom: 0;
     }
     
     #circleGroup{
-        transform: scale(0.85,0.85);
-        margin-top: 17.5em;
+/*        transform: scale(0.85,0.85);*/
+        margin-top: 15.3em;
+        text-align: center;
+        width: 100%;
+        height: auto;
+    }
+    
+    #innerCircle{
+        height: 36em;
     }
     
     .circle{
-        top: -1.5em;
-        left: 35%;
+        top: 20em;
+        left: 38%;
     }
     
     #moonPhases{
-        display: block;
+        background-color: #424242;
+        margin-left: -7em;
+        padding: 1em 7em 3em;
+        display: none;
     }
     
-    .circleMoons{
-        top: 0;
-        left: 37.5%;
+    #moonButton{
+        display: block;
+        height: 4.5em;
+    }
+    
+    #moonButton h3{
+        display: block;
+        margin-bottom: 0;
+        font-size: 1.6em;
+    }
+    
+    #moonRow1 .circleMoons:nth-of-type(n), #moonRow2 .circleMoons:nth-of-type(n){
+        transform: rotate(0) translate(0) rotate(0);
+        display: inline-block;
+        position: inherit;
+        margin: 0.5em;
+        top: 30em;
+        left: 0;
+        vertical-align: top;
+    }
+    
+    #moonRow1 .circleMoons:nth-of-type(n) h6, #moonRow2 .circleMoons:nth-of-type(n) h6{
+        color: #FFFFFF !important;
     }
     
     #future{
@@ -551,7 +581,7 @@ h6{
 @media screen and (min-width: 706px) and (max-width: 739px){
     
     .sunCircleContainer{
-        height: 46.8em;
+        min-height: 46.8em; /* allow height to adjust based on slideToggle */
         padding-bottom: 0;
     }
     
@@ -575,7 +605,7 @@ h6{
     #moonPhases{
         background-color: #424242;
         margin-left: -7em;
-        padding: 1em 7em 2em;
+        padding: 1em 7em 3em;
         display: none;
     }
     
@@ -588,7 +618,7 @@ h6{
         margin-bottom: 0;
     }
     
-    .circleMoons:nth-of-type(n){
+    #moonRow1 .circleMoons:nth-of-type(n), #moonRow2 .circleMoons:nth-of-type(n){
         transform: rotate(0) translate(0) rotate(0);
         display: inline-block;
         position: inherit;
@@ -598,33 +628,22 @@ h6{
         vertical-align: top;
     }
     
-    .circleMoons:nth-of-type(n) h6{
+    #moonRow1 .circleMoons:nth-of-type(n) h6, #moonRow2 .circleMoons:nth-of-type(n) h6{
         color: #FFFFFF !important;
     }
-
-    .circleMoons:nth-of-type(1){
-        margin-left: 11%;
-    }
-
-    .circleMoons:nth-of-type(4){
-        margin-right: 8%;
-    }
-
-    .circleMoons:nth-of-type(5){
-        margin-left: 4%;
+    
+    #futureButton{
+        margin: -6.9em auto 0;
     }
     
     #future{
         height: 22em;
+        margin-top: -2.7em;
     }
     
     #future .container{
         width: 75%;
         text-align: center;
-    }
-    
-    #futureButton{
-        margin: -3.3em auto 0;
     }
     
     #future h3{
@@ -653,7 +672,7 @@ h6{
 @media screen and (min-width: 551px) and (max-width: 705px){
     
     .sunCircleContainer{
-        height: 46.8em;
+        min-height: 46.8em; /* allow height to adjust based on slideToggle */
         padding-bottom: 0;
     }
     
@@ -674,10 +693,39 @@ h6{
         left: 36%;
     }
     
+    .circle h5{
+        font-size: 1.6em;
+    }
+    
+    .circle h5:first-child{
+        margin-top: 2.3em;
+    }
+    
+    .circle h6{
+        font-size: 1.1em;
+        margin-top: 2.3em;
+    }
+    
+    #circleTime h6, #circleMax h6, #circleFeels h6{
+        margin-top: 2em;
+    }
+    
+    #circleSummary h6{
+        margin-top: 1.7em;
+    }
+    
+    #circleDate h6{
+        margin-top: 1.5em;
+    }
+    
+    .circle p{
+        font-size: 1.4em;
+    }
+    
     #moonPhases{
         background-color: #424242;
         margin-left: -7em;
-        padding: 1em 7em 2em;
+        padding: 1em 7em 3em;
         display: none;
     }
     
@@ -690,7 +738,7 @@ h6{
         margin-bottom: 0;
     }
     
-    .circleMoons:nth-of-type(n){
+    #moonRow1 .circleMoons:nth-of-type(n), #moonRow2 .circleMoons:nth-of-type(n){
         transform: rotate(0) translate(0) rotate(0);
         display: inline-block;
         position: inherit;
@@ -700,33 +748,22 @@ h6{
         vertical-align: top;
     }
     
-    .circleMoons:nth-of-type(n) h6{
+    #moonRow1 .circleMoons:nth-of-type(n) h6, #moonRow2 .circleMoons:nth-of-type(n) h6{
         color: #FFFFFF !important;
     }
-
-    .circleMoons:nth-of-type(1){
-        margin-left: 8%;
-    }
-
-    .circleMoons:nth-of-type(4){
-        margin-right: 5%;
-    }
-
-    .circleMoons:nth-of-type(5){
-        margin-left: 4%;
+    
+    #futureButton{
+        margin: -6.7em auto 0;
     }
     
     #future{
         height: 22em;
+        margin-top: -2.5em;
     }
     
     #future .container{
         width: 75%;
         text-align: center;
-    }
-    
-    #futureButton{
-        margin: -3.3em auto 0;
     }
     
     #future h3{
@@ -755,7 +792,7 @@ h6{
 @media screen and (max-width: 550px){
     
     .sunCircleContainer{
-        height: 45.3em;
+        min-height: 45.3em; /* allow height to adjust based on slideToggle */
         padding-bottom: 0;
     }
     
@@ -775,10 +812,39 @@ h6{
         left: 36%;
     }
     
+    .circle h5{
+        font-size: 1.6em;
+    }
+    
+    .circle h5:first-child{
+        margin-top: 2.3em;
+    }
+    
+    .circle h6{
+        font-size: 1.1em;
+        margin-top: 2.3em;
+    }
+    
+    #circleTime h6, #circleMax h6, #circleFeels h6{
+        margin-top: 2em;
+    }
+    
+    #circleSummary h6{
+        margin-top: 1.7em;
+    }
+    
+    #circleDate h6{
+        margin-top: 1.5em;
+    }
+    
+    .circle p{
+        font-size: 1.4em;
+    }
+    
     #moonPhases{
         background-color: #424242;
         margin-left: -7em;
-        padding: 1em 7em 2em;
+        padding: 1em 7em 3em;
         display: none;
     }
     
@@ -791,7 +857,7 @@ h6{
         margin-bottom: 0;
     }
     
-    .circleMoons:nth-of-type(n){
+    #moonRow1 .circleMoons:nth-of-type(n), #moonRow2 .circleMoons:nth-of-type(n){
         transform: rotate(0) translate(0) rotate(0);
         display: inline-block;
         position: inherit;
@@ -801,28 +867,8 @@ h6{
         vertical-align: top;
     }
     
-    .circleMoons:nth-of-type(n) h6{
+    #moonRow1 .circleMoons:nth-of-type(n) h6, #moonRow2 .circleMoons:nth-of-type(n) h6{
         color: #FFFFFF !important;
-    }
-
-    .circleMoons:nth-of-type(1){
-        margin-left: 10%;
-    }
-
-    .circleMoons:nth-of-type(3){
-        margin-right: 10%;
-    }
-
-    .circleMoons:nth-of-type(4){
-        margin-left: 10%;
-    }
-
-    .circleMoons:nth-of-type(6){
-        margin-right: 10%;
-    }
-
-    .circleMoons:nth-of-type(7){
-        margin-left: 2%;
     }
     
     #future{

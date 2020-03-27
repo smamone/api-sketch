@@ -440,79 +440,85 @@ function moonPhase(data) {
 
     if (moon == 0.25) { // 0.25 - first quarter moon -li 1-
 
-        $(".circleMoons:nth-child(1)").css(
-            "background", "linear-gradient(90deg, #FFFFFF00 49%, #EEEEEE 51%)"
-        ); // set background color and opacity to 0%, set gradient to create half moon on right
-        $(".circleMoons:nth-child(1) h6").css(
+        $("#moonRow1 .circleMoons:nth-child(1)").css({
+            "background":"linear-gradient(90deg, #FFFFFF00 49%, #EEEEEE 51%)",
+            "box-shadow":"0 0 0.75em 0 #fcfcfc"
+        }); // set background color and opacity to 0%, set gradient to create half moon on right
+        $("#moonRow1 .circleMoons:nth-child(1) h6").css(
             "color", "#333332"
         ); // set h6 text color to charcoal
 
     } else if (moon >= 0.76 && moon <= 0.99) { // 0.76-0.99 - waxing crescent -li 2-
 
-        $(".circleMoons:nth-child(2)").css({
+        $("#moonRow1 .circleMoons:nth-child(2)").css({
             "background-color": "#FFFFFF25",
-            "box-shadow": "inset -1.2em 0 0.5em #EEEEEE, inset -1.2em 0 0.5em 0.2em #EEEEEE",
-            "-moz-box-shadow": "inset -1.2em 0 0.5em #EEEEEE, inset -1.2em 0 0.5em 0.2em #EEEEEE"
+            "box-shadow": "inset -1.2em 0 0.5em #EEEEEE, inset -1.2em 0 0.5em 0.2em #EEEEEE, 0 0 0.75em 0 #fcfcfc",
+            "-moz-box-shadow": "inset -1.2em 0 0.5em #EEEEEE, inset -1.2em 0 0.5em 0.2em #EEEEEE, 0 0 0.75em 0 #fcfcfc"
         }); // set background colour and opacity 25%, set box shadow to create crescent on right
-        $(".circleMoons:nth-child(2) h6").css(
+        $("#moonRow1 .circleMoons:nth-child(2) h6").css(
             "color", "#333332"
         ); // set h6 text color to charcoal
 
     } else if (moon >= 0.01 && moon <= 0.24) { // 0.01-0.24 - waning crescent -li 4-
 
-        $(".circleMoons:nth-child(4)").css({
+        $("#moonRow1 .circleMoons:nth-child(4)").css({
             "background-color": "#FFFFFF25",
-            "box-shadow": "inset 1.2em 0 0.5em #EEEEEE, inset 1.2em 0 0.5em 0.2em #EEEEEE",
-            "-moz-box-shadow": "inset 1.2em 0 0.5em #EEEEEE, inset 1.2em 0 0.5em 0.2em #EEEEEE"
+            "box-shadow": "inset 1.2em 0 0.5em #EEEEEE, inset 1.2em 0 0.5em 0.2em #EEEEEE, 0 0 0.75em 0 #fcfcfc",
+            "-moz-box-shadow": "inset 1.2em 0 0.5em #EEEEEE, inset 1.2em 0 0.5em 0.2em #EEEEEE, 0 0 0.75em 0 #fcfcfc"
         }); // set background colour and opacity 25%, set box shadow to create crescent on left
-        $(".circleMoons:nth-child(4) h6").css(
+        $("#moonRow1 .circleMoons:nth-child(4) h6").css(
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon == 0.75) { // 0.75 - third quarter moon -li 5-
+    } else if (moon == 0.75) { // 0.75 - third quarter moon -li 1-
 
-        $(".circleMoons:nth-child(5)").css({
+        $("#moonRow2 .circleMoons:nth-child(1)").css({
             "background": "linear-gradient(-90deg, #FFFFFF00 49%, #EEEEEE 51%)",
-            "color": "#333332"
+            "color": "#333332",
+            "box-shadow":"0 0 0.75em 0 #fcfcfc"
         }); // set background color and opacity to 0%, set gradient to create half moon on left, set text color to charcoal
+        $("#moonRow2 .circleMoons:nth-child(1) h6").css(
+            "color", "#333332"
+        ); // set h6 text color to charcoal
 
-    } else if (moon >= 0.26 && moon <= 0.49) { // 0.26-0.49 - waning gibbous -li 6-
+    } else if (moon >= 0.26 && moon <= 0.49) { // 0.26-0.49 - waning gibbous -li 2-
 
-        $(".circleMoons:nth-child(6)").css({
+        $("#moonRow2 .circleMoons:nth-child(2)").css({
             "background-color": "#dedede",
-            "box-shadow": "inset -1em 0 0.5em #FFFFFF00, inset -1em 0 0.5em 0.2em #FFFFFF",
-            "-moz-box-shadow": "inset -1em 0 0.5em #FFFFFF00, inset -1em 0 0.5em 0.2em #FFFFFF"
+            "box-shadow": "inset -1em 0 0.5em #FFFFFF00, inset -1em 0 0.5em 0.2em #00000030, 0 0 0.75em 0 #fcfcfc",
+            "-moz-box-shadow": "inset -1em 0 0.5em #FFFFFF00, inset -1em 0 0.5em 0.2em #00000030, 0 0 0.75em 0 #fcfcfc"
         }); // set background colour and opacity 25%, set box shadow to create gibbous on left
-        $(".circleMoons:nth-child(6) h6").css(
+        $("#moonRow2 .circleMoons:nth-child(2) h6").css(
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon == 0.5) { // 0.5 - full moon -li 7-
+    } else if (moon == 0.5) { // 0.5 - full moon -li 3-
 
-        $(".circleMoons:nth-child(8)").css(
-            "background-image", "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)"
-        ); // set background to gradient
-        $(".circleMoons:nth-child(8) h6").css(
+        $("#moonRow2 .circleMoons:nth-child(3)").css({
+            "background-image":"linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
+            "box-shadow":"0 0 0.75em 0 #fcfcfc"
+        }); // set background to gradient
+        $("#moonRow2 .circleMoons:nth-child(3) h6").css(
             "color", "#333332"
         ); // set h6 text color to charcoal
 
-    } else if (moon >= 0.51 && moon <= 0.74) { // 0.51-0.74 - waxing gibbous -li 8-
+    } else if (moon >= 0.51 && moon <= 0.74) { // 0.51-0.74 - waxing gibbous -li 4-
 
-        $(".circleMoons:nth-child(8)").css({
+        $("#moonRow2 .circleMoons:nth-child(4)").css({
             "background-color": "#dedede",
-            "box-shadow": "inset 1em 0 0.5em #FFFFFF00, inset 1em 0 0.5em 0.2em #FFFFFF",
-            "-moz-box-shadow": "inset 1em 0 0.5em #FFFFFF00, inset 1em 0 0.5em 0.2em #FFFFFF"
+            "box-shadow": "inset 1em 0 0.5em #FFFFFF00, inset 1em 0 0.5em 0.2em #00000030, 0 0 0.75em 0 #fcfcfc",
+            "-moz-box-shadow": "inset 1em 0 0.5em #FFFFFF00, inset 1em 0 0.5em 0.2em #00000030, 0 0 0.75em 0 #fcfcfc"
         }); // set background colour and opacity 25%, set box shadow to create gibbous on right
-        $(".circleMoons:nth-child(8) h6").css(
+        $("#moonRow2 .circleMoons:nth-child(4) h6").css(
             "color", "#333332"
         ); // set h6 text color to charcoal
 
     } else { // 0 - new moon -li 3-
 
-        $(".circleMoons:nth-child(3)").css(
+        $("#moonRow1 .circleMoons:nth-child(3)").css(
             "box-shadow", "0 0 0.75em 0 #fcfcfc"
         ); // set css glow
-        $(".circleMoons:nth-child(3) h6").css(
+        $("#moonRow1 .circleMoons:nth-child(3) h6").css(
             "color", "#333332"
         ); // set h6 text color to charcoal
 
@@ -686,17 +692,17 @@ function moonSlide(event) { // function to hide/show moon phase div by sliding
             "display":"block",
             "float":"left"
         }); // change the css display to block
-        $("#moonButton h3").text("Moon phases [x]"); // change the text to Hide
+        $("#moonButton h3").text("Moon phases [x]"); // change the text to close
 
     } else {
 
-        $("#moonButton h3").text("Moon phases"); // change the text to Show
+        $("#moonButton h3").text("Moon phases"); // change the text to open
 
     } // close if statement
     
 } // close futureSlide function
 
-$("#moonButton").click(moonSlide); // call the futureSlide function
+$("#moonButton").click(moonSlide); // call the futureSlide function on moonButton click
 
 
 // FUNCTION to create SLIDER for FUTURE temps
@@ -707,15 +713,17 @@ function futureSlide(event) { // function to hide/show future div by sliding
 
     if ($("#futureButton h3").text() == "Weekly forecast") { // if the text of the titleButton heading is equal to Show
 
-        $("#future").css("display", "block"); // change the css display to block
-        $("#futureButton h3").text("Weekly forecast [x]"); // change the text to Hide
+        $("#future").css(
+            "display", "block"
+        ); // change the css display to block
+        $("#futureButton h3").text("Weekly forecast [x]"); // change the text to close
 
     } else {
 
-        $("#futureButton h3").text("Weekly forecast"); // change the text to Show
+        $("#futureButton h3").text("Weekly forecast"); // change the text to open
 
     } // close if statement
     
 } // close futureSlide function
 
-$("#futureButton").click(futureSlide); // call the futureSlide function
+$("#futureButton").click(futureSlide); // call the futureSlide function on futureButton click
