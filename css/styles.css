@@ -42,18 +42,24 @@ h6{
 
 /** GREETING **/
 #greeting{
-    width: 80%;
+    width: 90%;
+    min-height: 10em;
     color: white;
-    padding: 1% 1.5%;
+    padding: 3% 1.5% 0;
+    margin: 0 auto;
+}
+
+#greet{
     float: left;
+    padding: 0 1em 1em;
+    vertical-align: top;
 }
 
-#greeting h2{
-    
-}
-
-#greeting span{
-    
+#greetLoc{
+    float: right;
+    font-size: 3rem;
+    padding: 8px 1em 1em;
+    vertical-align: top;
 }
 
 
@@ -68,10 +74,11 @@ h6{
 
 #circleGroup{
     list-style: none;
-    margin: 0 auto;
+    margin: -6em auto 0;
     text-align: center;
     width: 60vw;
-    height: 50em;
+    height: 60em;
+    position: relative;
 }
 
 #innerCircle{
@@ -346,7 +353,7 @@ h6{
 /** FUTURE TEMPS **/
 #future{
     width: 95%;
-    height: 24.5%;
+    height: 18%;
     padding: 0 2.5%;
     margin: auto;
     float: left;
@@ -491,7 +498,7 @@ h6{
 @media screen and (min-width: 875px) and (max-width: 900px){
     
     .sunCircleContainer{
-        height: 65em;
+        height: 57em;
     }
     
     .circle{
@@ -509,12 +516,17 @@ h6{
     }
     
     #future{
-        height: 19%;
+        height: 14.5%;
     }
     
 }
 
 @media screen and (min-width: 740px) and (max-width: 874px){
+    
+    #greeting{
+        margin: 0 auto;
+        text-align: center;
+    }
     
     .sunCircleContainer{
         min-height: 46.8em; /* allow height to adjust based on slideToggle */
@@ -527,6 +539,7 @@ h6{
         text-align: center;
         width: 100%;
         height: auto;
+        position: inherit;
     }
     
     #innerCircle{
@@ -573,7 +586,7 @@ h6{
     }
     
     #future{
-        height: 30.3%;
+        height: 14.5%;
     }
     
     #future .container{
@@ -596,6 +609,22 @@ h6{
 }
 
 @media screen and (min-width: 706px) and (max-width: 739px){
+    
+    #greeting{
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    #greet{
+        padding-bottom: 0;
+        float: none;
+        margin: 0 auto;
+    }
+    
+    #greetLoc{
+        float: none;
+        margin: 0 auto;
+    }
     
     .sunCircleContainer{
         min-height: 46.8em; /* allow height to adjust based on slideToggle */
@@ -697,6 +726,25 @@ h6{
 
 @media screen and (min-width: 551px) and (max-width: 705px){
     
+    #greeting{
+        min-height: 8em;
+        margin: 0 auto;
+        padding-top: 5%;
+        text-align: center;
+    }
+    
+    #greet{
+        padding-bottom: 0;
+        float: none;
+        margin: 0 auto;
+    }
+    
+    #greetLoc{
+        padding-top: 0;
+        float: none;
+        margin: 0 auto;
+    }
+    
     .sunCircleContainer{
         min-height: 46.8em; /* allow height to adjust based on slideToggle */
         padding-bottom: 0;
@@ -715,16 +763,13 @@ h6{
     }
     
     .circle{
-        top: -2em;
+        top: -3.5em;
         left: 36%;
     }
     
-    .circle h5{
+    #pCurrent{
         font-size: 1.6em;
-    }
-    
-    .circle h5:first-child{
-        margin-top: 2.3em;
+        margin-top: 3.5em;
     }
     
     .circle h6{
@@ -783,12 +828,12 @@ h6{
     }
     
     #futureButton{
-        margin: -6.7em auto 0;
+        margin: -6.6em auto 0;
     }
     
     #future{
         height: 22em;
-        margin-top: -2.5em;
+        margin-top: -2.4em;
     }
     
     #future .container{
@@ -829,8 +874,22 @@ h6{
     
     #greeting{
         margin: 0 auto;
+        padding-top: 8%;
         text-align: center;
         float: none;
+    }
+    
+    #greet{
+        padding-bottom: 0;
+        float: none;
+        margin: 0 auto;
+        font-size: 2.9em;
+    }
+    
+    #greetLoc{
+        float: none;
+        margin: 0 auto;
+        font-size: 2.1em;
     }
     
     .sunCircleContainer{

@@ -52,28 +52,32 @@ function timeGreeting() {
 
     if (hours >= 0 && hours < 12) { // between 5am and 11:59am
 
-        $("#greeting h2").html("Good morning!"); // show "Good morning"
+        $("#greet").html("Good morning!"); // show "Good morning"
+        $("#greet span").addClass("fas fa-sun"); // show sun icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to top, #9795f0 0%, #fbc8d4 100%)"
         ); // change background to gradient for morning colours
 
     } else if (hours >= 12 && hours < 17) { // between 12pm and 4:59pm
 
-        $("#greeting h2").html("Good afternoon!"); // show "Good afternoon"
+        $("#greet").html("Good afternoon!"); // show "Good afternoon"
+        $("#greet span").addClass("fas fa-sun"); // show sun icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to top, #4481eb 0%, #04befe 100%)"
         ); // change background to gradient for afternoon colours
 
     } else if (hours >= 17 && hours < 20) { // between 5pm and 7:59pm
 
-        $("#greeting h2").html("Good evening!"); // show "Good evening"
+        $("#greet").html("Good evening!"); // show "Good evening"
+        $("#greet span").addClass("fas fa-sun"); // show sun icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%)"
         ); // change background to gradient for evening colours
 
     } else { // between 8pm and 4:59am
 
-        $("#greeting h2").html("Good night!"); // show "Good night"
+        $("#greet").html("Good night!"); // show "Good night"
+        $("#greet span").addClass("fas fa-moon"); // show moon icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to right, #243949 0%, #517fa4 100%)"
         ); // change background to gradient for night colours
@@ -104,11 +108,10 @@ function getLocationName(latLongCoords) {
         var locationComponent = locationData.results[0].components;
         var locString = locationComponent.suburb + ", " + locationComponent.state_code;
 
-        // LOCATION
-        // get location and add to html tag
-        $("#location").append(locString);
-
-        //        console.log(locString);
+//        console.log(locString);
+    
+        // append location to greeting
+        $("#greetLoc").append(locString);
 
     }); // close getJSON
 
@@ -161,10 +164,10 @@ function getWeatherData(currentLocation) {
         // get feels like temp and add to html tag
         $("#feelsTemp span").html(Math.round(data.currently.apparentTemperature)); // round up
 
-        //call the  temp icon function and send data with it
-        tempIcon(data); // call the function
+        // call the  temp icon function and send data with it
+        tempIcon(data);
 
-        // call the timeGreeting function - don't need to send data as it is based off users location
+        // call the timeGreeting function
         timeGreeting();
 
         // call the moonPhase function
@@ -298,7 +301,7 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Clear"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/sun.jpg)",
+            "background-image":"url(images/sun.jpg)",
             "background-size":"cover"
         }); // set background image
         
@@ -310,7 +313,7 @@ function tempIcon(data) {
         }); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Clear"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/night.jpg)",
+            "background-image":"url(images/night.jpg)",
             "background-size":"cover",
         }); // set background image
         $("#currentTemp").css(
@@ -324,7 +327,7 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Rain"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/rain.jpg)",
+            "background-image":"url(images/rain.jpg)",
             "background-size":"cover"
         }); // set background image
         $("#currentTemp").css(
@@ -338,7 +341,7 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Snow"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image": "url(/images/snow.jpg)",
+            "background-image": "url(images/snow.jpg)",
             "background-size": "cover"
         }); // set background image
 
@@ -349,7 +352,7 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Sleet"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/sleet.jpg)",
+            "background-image":"url(images/sleet.jpg)",
             "background-size":"cover"
         }); // set background image
 
@@ -360,18 +363,9 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Windy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/wind.jpg)",
+            "background-image":"url(images/wind.jpg)",
             "background-size":"cover"
         }); // set background image
-        $("#currentTemp h5:first-child").css(
-            "color", "#000000"
-        ); // change text color to black
-        $("#temp").css(
-            "color", "#000000"
-        ); // change text color to black
-        $("#location").css(
-            "color", "#FFFFFF"
-        ); // change text color to white
 
     } else if (currentIcon == "fog") { // foggy
 
@@ -380,7 +374,7 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Fog"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/fog.jpg)",
+            "background-image":"url(images/fog.jpg)",
             "background-size":"cover",
             "background-position":"right"
         }); // set background image
@@ -395,7 +389,7 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/cloud.jpg)",
+            "background-image":"url(images/cloud.jpg)",
             "background-size":"cover"
         }); // set background image
 
@@ -406,7 +400,7 @@ function tempIcon(data) {
         ); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Partly cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/partcloud.jpg)",
+            "background-image":"url(images/partcloud.jpg)",
             "background-size":"cover"
         }); // set background image
 
@@ -418,7 +412,7 @@ function tempIcon(data) {
         }); // change circle li background to gradient
         $(circleCurrentSummary).attr("alt", "Partly cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
-            "background-image":"url(/images/cloudnight.jpg)",
+            "background-image":"url(images/cloudnight.jpg)",
             "background-size":"cover"
         }); // set background image
         $("#currentTemp h5:first-child").css(
@@ -427,9 +421,6 @@ function tempIcon(data) {
         $("#temp").css(
             "color", "#FFFFFF"
         ); // change text color to white
-        $("#location").css(
-            "color", "#000000"
-        ); // change text color to black
 
     } else { // other
 
@@ -581,7 +572,7 @@ function futureTemps(data) {
         if (futureIcon == "clear-day") { // clear day
             
             $(listIcon).css({
-                "background-image":"url(/images/sun.jpg)",
+                "background-image":"url(images/sun.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9"
             }); // set background image
@@ -590,7 +581,7 @@ function futureTemps(data) {
         } else if (futureIcon == "clear-night") { // clear night
 
             $(listIcon).css({
-                "background-image":"url(/images/night.jpg)",
+                "background-image":"url(images/night.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9",
                 "color":"#FFFFFF"
@@ -600,7 +591,7 @@ function futureTemps(data) {
         } else if (futureIcon == "rain") { // rain
 
             $(listIcon).css({
-                "background-image":"url(/images/rain.jpg)",
+                "background-image":"url(images/rain.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9"
             }); // set background image
@@ -609,7 +600,7 @@ function futureTemps(data) {
         } else if (futureIcon == "snow") { // snow
 
             $(listIcon).css({
-                "background-image":"url(/images/snow.jpg)",
+                "background-image":"url(images/snow.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9"
             }); // set background image
@@ -618,7 +609,7 @@ function futureTemps(data) {
         } else if (futureIcon == "sleet") { // sleet
 
             $(listIcon).css({
-                "background-image":"url(/images/sleet.jpg)",
+                "background-image":"url(images/sleet.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9"
             }); // set background image
@@ -627,7 +618,7 @@ function futureTemps(data) {
         } else if (futureIcon == "wind") { // wind
 
             $(listIcon).css({
-                "background-image":"url(/images/wind.jpg)",
+                "background-image":"url(images/wind.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9"
             }); // set background image
@@ -636,7 +627,7 @@ function futureTemps(data) {
         } else if (futureIcon == "fog") { // foggy
 
             $(listIcon).css({
-                "background-image":"url(/images/fog.jpg)",
+                "background-image":"url(images/fog.jpg)",
                 "background-size":"cover",
                 "opacity":"0.8"
             }); // set background image
@@ -645,7 +636,7 @@ function futureTemps(data) {
         } else if (futureIcon == "cloudy") { // cloudy
 
             $(listIcon).css({
-                "background-image":"url(/images/cloud.jpg)",
+                "background-image":"url(images/cloud.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9"
             }); // set background image
@@ -654,7 +645,7 @@ function futureTemps(data) {
         } else if (futureIcon == "partly-cloudy-day") { // partly cloudy
 
             $(listIcon).css({
-                "background-image":"url(/images/partcloud.jpg)",
+                "background-image":"url(images/partcloud.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9"
             }); // set background image
@@ -663,7 +654,7 @@ function futureTemps(data) {
         } else if (futureIcon == "partly-cloudy-night") { // partly cloudy night
 
             $(listIcon).css({
-                "background-image":"url(/images/cloudnight.jpg)",
+                "background-image":"url(images/cloudnight.jpg)",
                 "background-size":"cover",
                 "opacity":"0.9",
                 "color":"#FFFFFF"
@@ -712,11 +703,14 @@ function moonSlide(event) { // function to hide/show moon phase div by sliding
             "display":"block",
             "float":"left"
         }); // change the css display to block
-        $("#moonButton h3").text("Moon phases [x]"); // change the text to close
+        $("#moonButton h3 span").addClass("far fa-times-circle"); // change the text to close
 
     } else {
-
-        $("#moonButton h3").text("Moon phases"); // change the text to open
+        
+        $("#moonPhases").css(
+            "display", "none"
+        ); // change the css display to block
+        $("#moonButton h3 span").removeClass("far fa-times-circle"); // change the text to open
 
     } // close if statement
     
@@ -731,16 +725,19 @@ function futureSlide(event) { // function to hide/show future div by sliding
 
     $("#future").slideToggle("slow", "linear"); // toggle the slide show/hide of future div depending on its current state
 
-    if ($("#futureButton h3").text() == "Weekly forecast") { // if the text of the titleButton heading is equal to Show
+    if ($("#futureButton").css("display") == "block") { // if the text of the titleButton heading is equal to Show
 
         $("#future").css(
             "display", "block"
         ); // change the css display to block
-        $("#futureButton h3").text("Weekly forecast [x]"); // change the text to close
+        $("#futureButton h3 span").addClass("far fa-times-circle"); // change the text to close
 
     } else {
 
-        $("#futureButton h3").text("Weekly forecast"); // change the text to open
+        $("#future").css(
+            "display", "none"
+        ); // change the css display to block
+        $("#futureButton h3 span").removeClass("far fa-times-circle"); // change the text to open
 
     } // close if statement
     
