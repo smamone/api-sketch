@@ -47,7 +47,7 @@ h6{
     width: 90%;
     min-height: 8em;
     color: white;
-    padding: 6% 1.5% 0;
+    padding: 5% 1.5% 0;
     margin: 0 auto;
     display: block;
 }
@@ -270,6 +270,23 @@ h6{
 }
 
 /** Circle Moons **/
+#moonButton{
+	float: left;
+	width: 100%;
+	height: 4.5em;
+	text-align: center;
+    background-color: #383b47;
+	display: none;
+	position: relative;
+    cursor: pointer;
+}
+
+#moonButton h3{
+    display: none;
+    color: #FFFFFF;
+    font-size: 1.9em;
+}
+
 #moonPhases{
     width: 100%;
     float: left;
@@ -286,25 +303,6 @@ h6{
     right: 0;
     margin-left: auto;
     margin-right: auto;
-}
-
-#moonButton{
-	float: left;
-	width: 100%;
-	height: 5em;
-	text-align: center;
-    background-color: #383b47;
-	display: none;
-	position: relative;
-    margin: 0 0 0 -7em;
-    padding: 0 7em;
-    cursor: pointer;
-}
-
-#moonButton h3{
-    display: none;
-    color: #FFFFFF;
-    font-size: 1.9em;
 }
 
 #moonRow1 .circleMoons:nth-of-type(1){
@@ -523,6 +521,7 @@ h6{
     
     #moonPhases{
         display: block;
+        padding-bottom: 3em;
     }
     
     .circleMoons{
@@ -570,14 +569,12 @@ h6{
     
     #moonPhases{
         background-color: #383b47;
-        margin-left: -7em;
-        padding: 0 7em 3em;
         display: none;
+        padding-bottom: 3em;
     }
     
     #moonButton{
         display: block;
-        height: 4.5em;
     }
     
     #moonButton h3{
@@ -670,28 +667,26 @@ h6{
         top: -4em;
     }
     
-    #moonPhases{
-        background-color: #383b47;
-        margin-left: -7em;
-        padding: 1em 7em 3em;
-        display: none;
-    }
-    
     #moonButton{
         display: block;
         height: 4.4em;
-    }
-    
-    #moonPhases .circleGroup{
-        position: relative;
-        height: inherit;
-        margin-top: 0;
     }
     
     #moonButton h3{
         display: block;
         margin-bottom: 0;
         font-size: 1.6em;
+    }
+    
+    #moonPhases{
+        background-color: #383b47;
+        display: none;
+    }
+    
+    #moonPhases .circleGroup{
+        position: relative;
+        height: inherit;
+        margin-top: 0;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n),
@@ -826,19 +821,6 @@ h6{
         font-size: 1.4em;
     }
     
-    #moonPhases{
-        background-color: #383b47;
-        margin-left: -7em;
-        padding: 1em 7em 3em;
-        display: none;
-    }
-    
-    #moonPhases .circleGroup{
-        position: relative;
-        height: inherit;
-        margin-top: 0;
-    }
-    
     #moonButton{
         display: block;
         height: 4.4em;
@@ -848,6 +830,18 @@ h6{
         display: block;
         margin-bottom: 0;
         font-size: 1.6em;
+    }
+    
+    #moonPhases{
+        background-color: #383b47;
+        display: none;
+        padding-bottom: 3em;
+    }
+    
+    #moonPhases .circleGroup{
+        position: relative;
+        height: inherit;
+        margin-top: 0;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n),
@@ -986,29 +980,25 @@ h6{
         font-size: 1.4em;
     }
     
-    #moonPhases{
-        background-color: #383b47;
-        margin-left: -0.1em;
-        padding: 0 0.1em 3em;
-        display: none;
-    }
-    
-    #moonPhases .circleGroup{
-        position: relative;
-        height: inherit;
-    }
-    
     #moonButton{
         display: block;
-        padding: 0 0.1em;
-        margin: 0 0 0 -0.1em;
-        height: 4.5em;
     }
     
     #moonButton h3{
         display: block;
         margin-bottom: 0;
         font-size: 1.6em;
+    }
+    
+    #moonPhases{
+        background-color: #383b47;
+        display: none;
+        padding-bottom: 3em;
+    }
+    
+    #moonPhases .circleGroup{
+        position: relative;
+        height: inherit;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n),
