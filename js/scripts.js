@@ -53,7 +53,6 @@ function timeGreeting() {
     if (hours >= 0 && hours < 12) { // between 5am and 11:59am
 
         $("#greet").html("Good morning!"); // show "Good morning"
-        $("#greet span").addClass("fas fa-sun"); // show sun icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to top, #9795f0 0%, #fbc8d4 100%)"
         ); // change background to gradient for morning colours
@@ -61,7 +60,6 @@ function timeGreeting() {
     } else if (hours >= 12 && hours < 17) { // between 12pm and 4:59pm
 
         $("#greet").html("Good afternoon!"); // show "Good afternoon"
-        $("#greet span").addClass("fas fa-sun"); // show sun icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to top, #4481eb 0%, #04befe 100%)"
         ); // change background to gradient for afternoon colours
@@ -69,7 +67,6 @@ function timeGreeting() {
     } else if (hours >= 17 && hours < 20) { // between 5pm and 7:59pm
 
         $("#greet").html("Good evening!"); // show "Good evening"
-        $("#greet span").addClass("fas fa-sun"); // show sun icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to top, #3b41c5 0%, #a981bb 49%, #ffc8a9 100%)"
         ); // change background to gradient for evening colours
@@ -77,12 +74,14 @@ function timeGreeting() {
     } else { // between 8pm and 4:59am
 
         $("#greet").html("Good night!"); // show "Good night"
-        $("#greet span").addClass("fas fa-moon"); // show moon icon
         $("#circleTime").css(
             "background-image", "linear-gradient(to right, #243949 0%, #517fa4 100%)"
         ); // change background to gradient for night colours
 
     } // close if statement
+
+    // update data every minute
+    setTimeout(timeGreeting, 60000);
 
 } // close timeGreeting function
 
@@ -103,7 +102,7 @@ function getLocationName(latLongCoords) {
     // make request to server using Open Cage API call
     $.getJSON(geocodeURL, function (locationData) {
 
-        console.log(locationData.results[0]);
+//        console.log(locationData.results[0]);
 
         var locationComponent = locationData.results[0].components;
         var locString = locationComponent.suburb + ", " + locationComponent.state_code;
@@ -114,6 +113,9 @@ function getLocationName(latLongCoords) {
         $("#greetLoc").append(locString);
 
     }); // close getJSON
+
+    // update data every minute
+//    setTimeout(getLocationName, 60000);
 
 } // close getLocationName function
 
@@ -131,38 +133,33 @@ function getWeatherData(currentLocation) {
 
     // make request to server using Dark Sky API call
     $.getJSON(urlDarkSky, function (data) {
-        console.log('getting data');
-        console.log(data); // show API data
-
-        // MAX TEMPERATURE
-        var maxTemp = data.daily.data[0].temperatureMax; // get max temperature for today
         
-        // set the span in the h2 tag
-        $("#currentMaxTemp span").html(Math.round(maxTemp)); // round up
+        console.log('getting data');
 
+        var currentTemp = data.currently.temperature;
+        var maxTemp = data.daily.data[0].temperatureMax;
+        
+        // request data
         // DESCRIPTION
-        // get summary and add to html tag
         $("#desc").html(data.currently.summary);
-
-        // TIME
-        // call function and send data object so it can process it
-        updateTimeTemp(data.currently);
-
-        // HUMIDITY
-        // get humdity and add to html tag
-        $("#humidity span").html(Math.round((data.currently.humidity) * 100)); // mulitply data by 10 to get percentage and round up
-
-        // WIND SPEED
-        // get wind speed and add to html tag
-        $("#wind span").html(Math.round(data.currently.windSpeed) * 3.6); // round up and convert from metres per second to kilometres per hour
-
+        
+        // MAX TEMP
+        $("#currentMaxTemp span").html(Math.round(maxTemp));
+        
         // UV INDEX
-        // get uv index and add to html tag
         $("#uv span").html(data.currently.uvIndex);
-
-        // FEELS LIKE TEMP
-        // get feels like temp and add to html tag
-        $("#feelsTemp span").html(Math.round(data.currently.apparentTemperature)); // round up
+        
+        // WIND
+        $("#wind span").html(Math.round(data.currently.windSpeed) * 3.6);
+        
+        // HUMIDITY
+        $("#humidity span").html(Math.round((data.currently.humidity) * 100));
+        
+        // FEELS LIKE
+        $("#feelsTemp span").html(Math.round(data.currently.apparentTemperature));
+        
+        // TEMPERATURE
+        $("#temp span").html(currentTemp.toFixed(1));
 
         // call the  temp icon function and send data with it
         tempIcon(data);
@@ -178,6 +175,10 @@ function getWeatherData(currentLocation) {
 
         // call futureTemps function
         futureTemps(data);
+        
+        // TIME
+        // call function and send data object so it can process it
+        updateTime(data.currently);
 
     }); // close getJSON
 
@@ -185,12 +186,11 @@ function getWeatherData(currentLocation) {
 
 
 // FUNCTION to update time
-function updateTimeTemp(currently) {
+function updateTime(currently) {
     
     console.log('in update time fn')
     
     // get current temperature from API and time from moment.js
-    var currentTemp = currently.temperature;
     var currentTime = moment(currentTime).format('dddd, MMMM Do');
     
     // call startTime function
@@ -214,36 +214,21 @@ function updateTimeTemp(currently) {
             session = "PM";
         }
         
-        h = (h < 10) ? "0" + h : h;
+        h = (h < 10) ? h : h;
         m = (m < 10) ? "0" + m : m;
 
         // add to html tag
         var time = h + ":" + m + " " + session;
         document.getElementById("time").innerText = time;
         document.getElementById("time").textContent = time;
+        
+        // DATE
+        $("#date span").html(currentTime);
 
         // update data every second
         setTimeout(startTime, 1000);
 
     } // close startTime function
-
-    // DATE
-    // get current date and add to html tag
-    $("#date span").html(currentTime);
-    
-    // call startTemp function
-    startTemp();
-    
-    // FUNCTION to get current TEMP and add to html tag
-    function startTemp() {
-        
-        // round to 1 decimal place and add to tag
-        $("#temp span").html(currentTemp.toFixed(1));
-
-        // update data every second
-        setTimeout(startTemp, 1000);
-        
-    } // close startTemp function
 
 } // close updateTimeTemp function
 
@@ -276,10 +261,13 @@ function dateSeason() {
     } else { // if month is Sep, Oct or Nov - Spring
 
         $("#circleDate").css(
-            "background-image", "linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%)"
-        ); // set background to gradient to spring colours
+            "background-image", "linear-gradient(120deg, #fccb90 0%, #d57eeb 100%)"
+        ); // set background to gradient to autumn colours
 
     } // close if statement
+
+    // update data every minute
+    setTimeout(dateSeason, 60000);
 
 } // close dateSeason function
 
@@ -439,7 +427,6 @@ function moonPhase(data) {
 
     // get current moon phase from API
     var moon = data.daily.data[0].moonPhase;
-    console.log(moon);
 
     // Moon Phases:
     // 0 - new moon
@@ -692,10 +679,18 @@ function returnIcon(icon) {
 } // close returnIcon function
 
 
+// call the futureSlide function on moonButton click
+$("#moonButton").click(moonSlide);
+
+
 // FUNCTION to create SLIDER for MOON PHASES
 function moonSlide(event) { // function to hide/show moon phase div by sliding
 
-    $("#moonPhases").slideToggle("slow", "linear"); // toggle the slide show/hide of moon phases div depending on its current state
+    $("#moonPhases").slideToggle("slow",  function(){
+        
+        $("#moonButton h3 span").toggleClass("far fa-times-circle");
+        
+    }); // toggle the slide show/hide of moon phases div depending on its current state
 
     if ($("#moonButton").css("display") == "block") { // if the screen size is correct and the heading is correct
         
@@ -703,45 +698,44 @@ function moonSlide(event) { // function to hide/show moon phase div by sliding
             "display":"block",
             "float":"left"
         }); // change the css display to block
-        $("#moonButton h3 span").addClass("far fa-times-circle"); // change the text to close
 
     } else {
         
         $("#moonPhases").css(
             "display", "none"
         ); // change the css display to block
-        $("#moonButton h3 span").removeClass("far fa-times-circle"); // change the text to open
 
     } // close if statement
     
 } // close futureSlide function
 
-// call the futureSlide function on moonButton click
-$("#moonButton").click(moonSlide);
+
+// call the futureSlide function on futureButton click
+$("#futureButton").click(futureSlide);
 
 
 // FUNCTION to create SLIDER for FUTURE temps
 function futureSlide(event) { // function to hide/show future div by sliding
 
-    $("#future").slideToggle("slow", "linear"); // toggle the slide show/hide of future div depending on its current state
-
+    $("#future").slideToggle("slow", function(){
+        
+        $("#futureButton h3 span").toggleClass("far fa-times-circle");
+        
+    }); // toggle the slide show/hide of future div depending on its current state
+    
+    
     if ($("#futureButton").css("display") == "block") { // if the text of the titleButton heading is equal to Show
 
         $("#future").css(
             "display", "block"
         ); // change the css display to block
-        $("#futureButton h3 span").addClass("far fa-times-circle"); // change the text to close
 
     } else {
 
         $("#future").css(
             "display", "none"
         ); // change the css display to block
-        $("#futureButton h3 span").removeClass("far fa-times-circle"); // change the text to open
 
     } // close if statement
     
 } // close futureSlide function
-
-// call the futureSlide function on futureButton click
-$("#futureButton").click(futureSlide);

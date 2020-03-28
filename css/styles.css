@@ -7,7 +7,7 @@
 
 html{
     width: 100vw;
-    height: 100%;
+    min-height: 100%;
 }
 
 body{
@@ -16,6 +16,8 @@ body{
     margin: 0;
     height: 100%;
     background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1{
@@ -43,10 +45,11 @@ h6{
 /** GREETING **/
 #greeting{
     width: 90%;
-    min-height: 10em;
+    min-height: 8em;
     color: white;
-    padding: 3% 1.5% 0;
+    padding: 6% 1.5% 0;
     margin: 0 auto;
+    display: block;
 }
 
 #greet{
@@ -66,33 +69,46 @@ h6{
 /** SUN CIRCLE **/
 .sunCircleContainer{
     width: 100%;
+    min-height: 55em;
     margin: auto;
     display: block;
     float: left;
     padding-bottom: 3em;
+    position: relative;
 }
 
-#circleGroup{
+.circleGroup{
     list-style: none;
+    left: 0;
+    right: 0;
     margin: -6em auto 0;
     text-align: center;
     width: 60vw;
-    height: 60em;
-    position: relative;
+    height: 20em;
+/*    position: absolute;*/
+    display: block;
+    clear: both;
+}
+
+.circleGroup #currentTemp{
+    background-color: #f5f4ed;
 }
 
 #innerCircle{
     float: left;
     width: 100%;
-    height: 100%;
     text-align: center;
+    display: block;
 }
 
 .circle{
     display: inline-block;
     position: absolute;
-    top: 26em;
-    left: 45%;
+    top: 19em;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     width: 10em;
     height: 10em;
     border-radius: 50%;
@@ -110,23 +126,6 @@ h6{
 
 .circle:hover{
     box-shadow: 0 0 0.75em 0 #d1fcff;
-}
-
-.circleMoons{
-    display: block;
-    position: absolute;
-    top: 27.5em;
-    left: 46.2%;
-    width: 7em;
-    height: 7em;
-    border-radius: 50%;
-    box-shadow: 0 0.2em 0.5em 0 rgba(0,0,0,0.2);
-    -webkit-transition: .15s;
-    transition: .15s;
-}
-
-.circleGroup #currentTemp{
-    background-color: #f5f4ed;
 }
 
 #currentTemp:hover{
@@ -228,19 +227,6 @@ h6{
     color: #f5f5f5;
 }
 
-.circleMoons h6{
-    width: 75%;
-    text-align: center;
-    color: #f5f5f5;
-    line-height: 1.1em;
-    margin: 2em auto 0;
-}
-
-.circleMoons:nth-child(3) h6,
-.circleMoons:nth-child(7) h6{
-    margin: 2.5em auto 0;
-}
-
 /** rotate li circles for placement, space with translate and remove rotation for text **/
 
 .circle:nth-of-type(1){
@@ -279,7 +265,8 @@ h6{
 .circle:nth-of-type(9){
     width: 18em;
     height: 18em;
-    transform: rotate(228deg) translate(5.75em) rotate(-228deg);
+    transform: rotate(228deg) translate(0) rotate(-228deg);
+    top: 15em;
 }
 
 /** Circle Moons **/
@@ -289,12 +276,16 @@ h6{
     display: block;
 }
 
-#moonRow1{
-    
+#moonPhases .circleGroup{
+    margin-top: 1em;
 }
 
+#moonRow1,
 #moonRow2{
-    
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #moonButton{
@@ -302,7 +293,7 @@ h6{
 	width: 100%;
 	height: 5em;
 	text-align: center;
-    background-color: #424242;
+    background-color: #383b47;
 	display: none;
 	position: relative;
     margin: 0 0 0 -7em;
@@ -317,7 +308,7 @@ h6{
 }
 
 #moonRow1 .circleMoons:nth-of-type(1){
-    transform: rotate(271deg) translate(23em) rotate(-271deg);
+    transform: rotate(270deg) translate(23em) rotate(-270deg);
 }
 
 #moonRow1 .circleMoons:nth-of-type(2){
@@ -333,7 +324,7 @@ h6{
 }
 
 #moonRow2 .circleMoons:nth-of-type(1){
-    transform: rotate(88deg) translate(23em) rotate(-88deg);
+    transform: rotate(90deg) translate(23em) rotate(-90deg);
 }
 
 #moonRow2 .circleMoons:nth-of-type(2){
@@ -347,13 +338,42 @@ h6{
 #moonRow2 .circleMoons:nth-of-type(4){
     transform: rotate(225deg) translate(23em) rotate(-225deg);
 }
+
+.circleMoons{
+    display: block;
+    position: absolute;
+    top: 20.5em;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 7em;
+    height: 7em;
+    border-radius: 50%;
+    box-shadow: 0 0.2em 0.5em 0 rgba(0,0,0,0.2);
+    -webkit-transition: .15s;
+    transition: .15s;
+}
+
+.circleMoons h6{
+    width: 75%;
+    text-align: center;
+    color: #f5f5f5;
+    line-height: 1.1em;
+    margin: 2em auto 0;
+}
+
+.circleMoons:nth-child(3) h6,
+.circleMoons:nth-child(7) h6{
+    margin: 2.5em auto 0;
+}
 /*****/
 
 
 /** FUTURE TEMPS **/
 #future{
     width: 95%;
-    height: 18%;
+    height: 13em;
     padding: 0 2.5%;
     margin: auto;
     float: left;
@@ -484,14 +504,6 @@ h6{
 }
 
 @media screen and (min-width: 901px) and (max-width: 1135px){
-
-    .circle{
-        left: 43%;
-    }
-    
-    .circleMoons{
-        left: 44.2%;
-    }
     
 }
 
@@ -502,8 +514,11 @@ h6{
     }
     
     .circle{
-        top: 28.5em;
-        left: 42.5%;
+        top: 21.5em;
+    }
+    
+    .circle:nth-of-type(9){
+        top: 17.5em;
     }
     
     #moonPhases{
@@ -511,12 +526,11 @@ h6{
     }
     
     .circleMoons{
-        top: 30em;
-        left: 44.5%;
+        top: 22.8em;
     }
     
     #future{
-        height: 14.5%;
+        height: 12em;
     }
     
 }
@@ -533,7 +547,7 @@ h6{
         padding-bottom: 0;
     }
     
-    #circleGroup{
+    .circleGroup{
 /*        transform: scale(0.85,0.85);*/
         margin-top: 15.3em;
         text-align: center;
@@ -543,18 +557,21 @@ h6{
     }
     
     #innerCircle{
-        height: 27em;
+        height: 40em;
     }
     
     .circle{
-        top: 23em;
-        left: 38%;
+        top: 12em;
+    }
+    
+    .circle:nth-of-type(9){
+        top: 8em;
     }
     
     #moonPhases{
-        background-color: #424242;
+        background-color: #383b47;
         margin-left: -7em;
-        padding: 1em 7em 3em;
+        padding: 0 7em 3em;
         display: none;
     }
     
@@ -582,11 +599,12 @@ h6{
     
     #moonRow1 .circleMoons:nth-of-type(n) h6,
     #moonRow2 .circleMoons:nth-of-type(n) h6{
-        color: #FFFFFF !important;
+        color: #879fff !important;
     }
     
     #future{
         height: 14.5%;
+        padding-bottom: 6%;
     }
     
     #future .container{
@@ -627,11 +645,11 @@ h6{
     }
     
     .sunCircleContainer{
-        min-height: 46.8em; /* allow height to adjust based on slideToggle */
+/*        min-height: 46.8em;  allow height to adjust based on slideToggle */
         padding-bottom: 0;
     }
     
-    #circleGroup{
+    .circleGroup{
         transform: scale(0.8,0.8);
         margin-top: 15.3em;
         text-align: center;
@@ -640,17 +658,20 @@ h6{
     }
     
     #innerCircle{
-        height: 26em;
+        height: 35em;
     }
     
     .circle{
         margin-top: -5em;
         top: 0;
-        left: 38%;
+    }
+    
+    .circle:nth-of-type(9){
+        top: -4em;
     }
     
     #moonPhases{
-        background-color: #424242;
+        background-color: #383b47;
         margin-left: -7em;
         padding: 1em 7em 3em;
         display: none;
@@ -658,11 +679,19 @@ h6{
     
     #moonButton{
         display: block;
+        height: 4.4em;
+    }
+    
+    #moonPhases .circleGroup{
+        position: relative;
+        height: inherit;
+        margin-top: 0;
     }
     
     #moonButton h3{
         display: block;
         margin-bottom: 0;
+        font-size: 1.6em;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n),
@@ -671,23 +700,22 @@ h6{
         display: inline-block;
         position: inherit;
         margin: 0.5em;
-        top: 30em;
+        top: 0;
         left: 0;
         vertical-align: top;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n) h6,
     #moonRow2 .circleMoons:nth-of-type(n) h6{
-        color: #FFFFFF !important;
+        color: #879fff !important;
     }
     
     #futureButton{
-        margin: -6.7em auto 0;
+        margin: 0 auto;
     }
     
     #future{
         height: 22em;
-        margin-top: -2.5em;
     }
     
     #future .container{
@@ -746,11 +774,11 @@ h6{
     }
     
     .sunCircleContainer{
-        min-height: 46.8em; /* allow height to adjust based on slideToggle */
+        min-height: 60%; /* allow height to adjust based on slideToggle */
         padding-bottom: 0;
     }
     
-    #circleGroup{
+    .circleGroup{
         transform: scale(0.8,0.8);
         margin-top: 17em;
         text-align: center;
@@ -759,12 +787,15 @@ h6{
     }
     
     #innerCircle{
-        height: 28em;
+        height: 40em;
     }
     
     .circle{
         top: -3.5em;
-        left: 36%;
+    }
+    
+    .circle:nth-of-type(9){
+        top: -7.5em;
     }
     
     #pCurrent{
@@ -796,19 +827,27 @@ h6{
     }
     
     #moonPhases{
-        background-color: #424242;
+        background-color: #383b47;
         margin-left: -7em;
         padding: 1em 7em 3em;
         display: none;
     }
     
+    #moonPhases .circleGroup{
+        position: relative;
+        height: inherit;
+        margin-top: 0;
+    }
+    
     #moonButton{
         display: block;
+        height: 4.4em;
     }
     
     #moonButton h3{
         display: block;
         margin-bottom: 0;
+        font-size: 1.6em;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n),
@@ -817,23 +856,22 @@ h6{
         display: inline-block;
         position: inherit;
         margin: 0.5em;
-        top: 30em;
+        top: 0;
         left: 0;
         vertical-align: top;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n) h6,
     #moonRow2 .circleMoons:nth-of-type(n) h6{
-        color: #FFFFFF !important;
+        color: #879fff !important;
     }
     
     #futureButton{
-        margin: -6.6em auto 0;
+        margin: 0 auto;
     }
     
     #future{
         height: 22em;
-        margin-top: -2.4em;
     }
     
     #future .container{
@@ -893,11 +931,11 @@ h6{
     }
     
     .sunCircleContainer{
-        min-height: 45.3em; /* allow height to adjust based on slideToggle */
+        min-height: 60%; /* allow height to adjust based on slideToggle */
         padding-bottom: 0;
     }
     
-    #circleGroup{
+    .circleGroup{
         transform: scale(0.8,0.8);
         margin-top: 12em;
         text-align: center;
@@ -905,13 +943,16 @@ h6{
     }
     
     #innerCircle{
-        height: 22em;
+        height: 35em;
     }
     
     .circle{
         top: 0;
-        left: 36%;
-        margin-top: -8em;
+        margin-top: -2.5em;
+    }
+    
+    .circle:nth-of-type(9){
+        top: -4em;
     }
     
     .circle h5{
@@ -946,19 +987,28 @@ h6{
     }
     
     #moonPhases{
-        background-color: #424242;
-        margin-left: -7em;
-        padding: 1em 7em 3em;
+        background-color: #383b47;
+        margin-left: -0.1em;
+        padding: 0 0.1em 3em;
         display: none;
+    }
+    
+    #moonPhases .circleGroup{
+        position: relative;
+        height: inherit;
     }
     
     #moonButton{
         display: block;
+        padding: 0 0.1em;
+        margin: 0 0 0 -0.1em;
+        height: 4.5em;
     }
     
     #moonButton h3{
         display: block;
         margin-bottom: 0;
+        font-size: 1.6em;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n),
@@ -967,14 +1017,14 @@ h6{
         display: inline-block;
         position: inherit;
         margin: 0.5em;
-        top: 30em;
+        top: 0;
         left: 0;
         vertical-align: top;
     }
     
     #moonRow1 .circleMoons:nth-of-type(n) h6,
     #moonRow2 .circleMoons:nth-of-type(n) h6{
-        color: #FFFFFF !important;
+        color: #879fff !important;
     }
     
     #future{

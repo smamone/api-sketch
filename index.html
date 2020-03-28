@@ -14,17 +14,17 @@
         
         <div id="greeting">
         
-            <h2 id="greet"> <span></span></h2>
-            <h2 id="greetLoc"><span class="fas fa-map-marker-alt"></span> </h2>
+            <h2 id="greet"></h2>
+            <h2 id="greetLoc"><span class="fas fa-map-marker-alt"></span>&nbsp </h2>
         
         </div>
         
         <div class="sunCircleContainer">
             
-            <ul id="circleGroup">
-            
                 <!-- INNER CIRCLE -->
                 <div id="innerCircle">
+            
+            <ul class="circleGroup">
                     
                     <li id="circleTime" class="circle" alt="Time"> <!-- 1 -->
                         <h6>Time</h6>
@@ -63,6 +63,8 @@
                         <h1 id="temp"><span></span><sup class="celcius">&deg;C</sup></h1> <!-- current temp -->
                     </li>
                 
+                    </ul>
+                
                 </div>
                 <!-- close INNER CIRCLE -->
                     
@@ -70,13 +72,15 @@
         
                 <div id="moonButton">
 
-                    <h3>Moon phases  <span></span></h3>
+                    <h3>Moon phases &nbsp<span></span></h3>
 
                 </div>
                 
                 <div id="moonPhases">
                 
                     <div id="moonRow1">
+            
+            <ul class="circleGroup">
                         
                         <li class="circleMoons" alt="First Quarter"> <!-- 1 -->
                             <h6>First Quarter</h6>
@@ -90,10 +94,14 @@
                         <li class="circleMoons" alt="Waning Crescent"> <!-- 4 -->
                             <h6>Waning Crescent</h6>
                         </li>
+                
+                    </ul>
                     
                     </div> <!-- close MOON ROW 1 -->
                     
                     <div id="moonRow2">
+            
+            <ul class="circleGroup">
                         
                         <li class="circleMoons" alt="Third Quarter"> <!-- 1 -->
                             <h6>Third Quarter</h6>
@@ -107,36 +115,36 @@
                         <li class="circleMoons" alt="Waxing Gibbous"> <!-- 4 -->
                             <h6>Waxing Gibbous</h6>
                         </li>
+                
+                        </ul>
                         
                     </div> <!-- close MOON ROW 2 -->
                     
                 </div> <!-- close MOON PHASES -->
-                
-            </ul> <!-- close CIRCLE GROUP -->
+        
+            <div id="futureButton">
+
+                <h3>Weekly forecast &nbsp<span></span></h3>
+
+            </div> <!-- close FUTURE BUTTON -->
+
+            <div id="future">
+
+                <div class="container">
+
+                    <div id="col1"></div>
+                    <div id="col2"></div>
+                    <div id="col3"></div>
+                    <div id="col4"></div>
+                    <div id="col5"></div>
+                    <div id="col6"></div>
+                    <div id="col7"></div>
+
+                </div> <!-- close CONTAINER -->
+
+            </div> <!-- close FUTURE -->
         
         </div> <!-- close SUN CIRCLE CONTAINER -->
-        
-        <div id="futureButton">
-
-            <h3>Weekly forecast  <span></span></h3>
-
-        </div> <!-- close FUTURE BUTTON -->
-
-        <div id="future">
-            
-            <div class="container">
-                
-                <div id="col1"></div>
-                <div id="col2"></div>
-                <div id="col3"></div>
-                <div id="col4"></div>
-                <div id="col5"></div>
-                <div id="col6"></div>
-                <div id="col7"></div>
-                
-            </div> <!-- close CONTAINER -->
-
-        </div> <!-- close FUTURE -->
 
         <!-- SCRIPTS -->
         <script src="js/jquery-3.4.1.js"></script>
