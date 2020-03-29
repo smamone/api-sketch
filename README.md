@@ -4,6 +4,7 @@
 
 As a starting point for this task, I researched existing weather app designs to get a sense of the design direction, imagery used and data provided. I found many different design approaches including minimalist, iconography, imagery, typography and experimental, displaying a varied amount of information. I found that there was a commonality amongst most designs using sans serif fonts and delicate colours and tones.
 
+![Image of Weather app]
 (https://mir-s3-cdn-cf.behance.net/project_modules/disp/3c1cd822645245.5631618fdcc28.gif)
 *_Figure 1: Weather app (Nazoa, 2015)_*
 
@@ -52,7 +53,7 @@ I called on the Dark Sky, Open Cage and AirVisual APIs for location-based data, 
 Future developments could include introducing a total of 12 inside circles to represent each hour of the day, with the time item displaying in the current corresponding hour, with the remaining circles rotating with the time. E.g. The time will display in the third circle when the time is within the third hour of the day.
 
 ### References
-##### Research
+#### Research
 BOM. (2020). BOM Weather. Retrieved from: (http://www.bom.gov.au/app/).
 Dunford, B. (2014). Phases of the Moon. Retrieved from: (https://solarsystem.nasa.gov/resources/676/phases-of-the-moon/).
 Henner, J. (2017). Sun. Retrieved from: (https://medium.muz.li/weather-app-inspiration-3378000015c6).
@@ -65,7 +66,7 @@ Taylor, S. (2012). Dieter Rams inspired weather app… Retrieved from: (http://w
 Weather Live°. (2020). Weather Live°- Local Forecast. Retrieved from: (https://apps.apple.com/au/app/weather-live-local-forecast/id749083919).
 Yuekun. (2017). Weather Concept Design. Retrieved from: (https://medium.muz.li/weather-app-inspiration-3378000015c6).
 
-##### Images
+#### Images
 Freepik. (2015). Bokeh background for summer Free Vector. Retrieved from: (https://www.freepik.com/free-vector/bokeh-background-summer_787048.htm#page=1&query=sunny&position=11).
 Freepik. (2019). Blurred winter background Free Vector. Retrieved from: (https://www.freepik.com/free-vector/blurred-winter-background_3490959.htm#page=1&query=blurred-winter-background&position=13).
 Freepik. (2020). Realistic full moon sky background design Free Vector. Retrieved from: (https://www.freepik.com/free-vector/realistic-full-moon-sky-background-design_6764525.htm#page=1&query=clear%20night&position=4).
