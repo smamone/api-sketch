@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     var newLocation = "";
     
-    var currentAQ = 0;
+    var currentAQI = 0;
 
     if (navigator.geolocation) {
 
@@ -22,7 +22,7 @@ $(document).ready(function () {
             getLocationName(latLongName);
             
             // call function to get air quality data from AirVisual API
-            getAQ(currentAQ);
+            getAQI(currentAQI);
 
             // call function to get weather data from Dark Sky API
             getWeatherData(newLocation);
@@ -127,7 +127,7 @@ function getLocationName(latLongCoords) {
 
 
 // FUNCTION to load data from AIRVISUAL API
-function getAQ(data) {
+function getAQI(data) {
     
     console.log("get in air quality data");
     
@@ -141,14 +141,65 @@ function getAQ(data) {
         console.log(data);
 
         // get current air quality of current location
-        var currentAQ = data.data.current.pollution.aqius;
+        var currentAQI = data.data.current.pollution.aqius;
         
         // add to html tag
-        $("#airQ").html(currentAQ);
+        $("#airQ").html(currentAQI);
+        
+        // call aqiColour function
+        aqiColour(currentAQI);
 
     }); // close getJSON
     
-} // close getAQ function
+} // close getAQI function
+
+
+// FUNCTION to change AIR QUALITY circle colour depending on index number
+function aqiColour(currentAQI){
+    
+    if (currentAQI <= 33){ // very good - blue
+        
+        $("#circleAQ").css(
+            "background-image", "linear-gradient(to right, #b2fefa, #0ed2f7)"
+        );
+        
+    } else if (currentAQI >= 34 && currentAQI <= 66){ // good - green
+        
+        $("#circleAQ").css({
+            "background-image":"linear-gradient(to top, #0ba360 0%, #3cba92 100%)",
+            "color":"#FFFFFF"
+        });
+    
+    } else if (currentAQI >= 67 && currentAQI <= 99){ // fair - gold
+        
+        $("#circleAQ").css(
+            "background-image", "linear-gradient(to right, #ffb347, #ffcc33)"
+        );
+        
+    } else if (currentAQI >= 100 && currentAQI <= 149){ // poor - orange
+        
+        $("#circleAQ").css({
+            "background-image":"linear-gradient(to right, #ff4b1f, #ff9068)",
+            "color":"#FFFFFF"
+        });
+        
+    } else if (currentAQI >= 150 && currentAQI <= 200){ // very poor - maroon
+        
+        $("#circleAQ").css({
+            "background-image":"linear-gradient(45deg, #874da2 0%, #c43a30 100%)",
+            "color":"#FFFFFF"
+        });
+        
+    } else { // hazardous - red
+        
+        $("#circleAQ").css({
+            "background-image":"linear-gradient(to right, #cb2d3e, #ef473a)",
+            "color":"#FFFFFF"
+        });
+        
+    } // close if statement
+    
+} // close aqiColour function
 
 
 // FUNCTION to load data from DARK SKY API
