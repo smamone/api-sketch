@@ -2,6 +2,8 @@
 ## 11060 Assessment 2
 ### Stefanie Mamone u3027318
 
+##### Link to weather app: https://smamone.github.io/api-sketch/
+
 As a starting point for this task, I researched existing weather app designs to get a sense of the design direction, imagery used and data provided. I found many different design approaches including minimalist, iconography, imagery, typography and experimental, displaying a varied amount of information. I found that there was a commonality amongst most designs using sans serif fonts and delicate colours and tones.
 
 ![Image of Weather app](https://mir-s3-cdn-cf.behance.net/project_modules/disp/3c1cd822645245.5631618fdcc28.gif)  
