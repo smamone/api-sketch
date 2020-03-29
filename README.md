@@ -4,7 +4,7 @@
 
 As a starting point for this task, I researched existing weather app designs to get a sense of the design direction, imagery used and data provided. I found many different design approaches including minimalist, iconography, imagery, typography and experimental, displaying a varied amount of information. I found that there was a commonality amongst most designs using sans serif fonts and delicate colours and tones.
 
-![Image of Weather app](https://mir-s3-cdn-cf.behance.net/project_modules/disp/3c1cd822645245.5631618fdcc28.gif =100x)  
+![Image of Weather app](https://mir-s3-cdn-cf.behance.net/project_modules/disp/3c1cd822645245.5631618fdcc28.gif =100)  
 *_Figure 1: Weather app (Nazoa, 2015)_*
 
 ![Image of Rams inspired weather app…](http://www.loveidee.com/blog/wp-content/uploads/2012/07/app.jpg)  
@@ -56,23 +56,23 @@ Future developments could include introducing a total of 12 inside circles to re
 BOM. (2020). BOM Weather. Retrieved from: http://www.bom.gov.au/app/.  
 Dunford, B. (2014). Phases of the Moon. Retrieved from: https://solarsystem.nasa.gov/resources/676/phases-of-the-moon/.  
 Henner, J. (2017). Sun. Retrieved from: https://medium.muz.li/weather-app-inspiration-3378000015c6.  
-Nazoa, G. (2015). Weather app. Retrieved from: (https://www.behance.net/gallery/22645245/Weather-app).
-Nguyen, H. (2020). Weather : Weather forecast. Retrieved from: (https://apps.apple.com/au/app/weather-weather-forecast/id1363846787).
-Onur, B. (2017). Extremely hot weather widget. Retrieved from: (https://medium.muz.li/weather-app-inspiration-3378000015c6).
-Peshin, A. (2018). Why Doesn’t The Moon Revolve Around The Sun Instead Of The Earth? Retrieved from: (https://www.scienceabc.com/nature/universe/doesnt-moon-revolve-around-sun-instead-earth.html).
-Stupic, M. (2019). Weather App. Retrieved from: (https://dribbble.com/shots/6615444-Weather-App).
-Taylor, S. (2012). Dieter Rams inspired weather app… Retrieved from: (http://www.loveidee.com/blog/dieter-rams-inspired-weather-app/).
-Weather Live°. (2020). Weather Live°- Local Forecast. Retrieved from: (https://apps.apple.com/au/app/weather-live-local-forecast/id749083919).
-Yuekun. (2017). Weather Concept Design. Retrieved from: (https://medium.muz.li/weather-app-inspiration-3378000015c6).
+Nazoa, G. (2015). Weather app. Retrieved from: https://www.behance.net/gallery/22645245/Weather-app.  
+Nguyen, H. (2020). Weather : Weather forecast. Retrieved from: https://apps.apple.com/au/app/weather-weather-forecast/id1363846787.  
+Onur, B. (2017). Extremely hot weather widget. Retrieved from: https://medium.muz.li/weather-app-inspiration-3378000015c6.  
+Peshin, A. (2018). Why Doesn’t The Moon Revolve Around The Sun Instead Of The Earth? Retrieved from: https://www.scienceabc.com/nature/universe/doesnt-moon-revolve-around-sun-instead-earth.html.  
+Stupic, M. (2019). Weather App. Retrieved from: https://dribbble.com/shots/6615444-Weather-App.  
+Taylor, S. (2012). Dieter Rams inspired weather app… Retrieved from: http://www.loveidee.com/blog/dieter-rams-inspired-weather-app/.  
+Weather Live°. (2020). Weather Live°- Local Forecast. Retrieved from: https://apps.apple.com/au/app/weather-live-local-forecast/id749083919.  
+Yuekun. (2017). Weather Concept Design. Retrieved from: https://medium.muz.li/weather-app-inspiration-3378000015c6.  
 
 #### Images
-Freepik. (2015). Bokeh background for summer Free Vector. Retrieved from: (https://www.freepik.com/free-vector/bokeh-background-summer_787048.htm#page=1&query=sunny&position=11).
-Freepik. (2019). Blurred winter background Free Vector. Retrieved from: (https://www.freepik.com/free-vector/blurred-winter-background_3490959.htm#page=1&query=blurred-winter-background&position=13).
-Freepik. (2020). Realistic full moon sky background design Free Vector. Retrieved from: (https://www.freepik.com/free-vector/realistic-full-moon-sky-background-design_6764525.htm#page=1&query=clear%20night&position=4).
-Freepik. (2020). Sky with clouds background in flat style Free Vector. Retrieved from: (https://www.freepik.com/free-vector/sky-with-clouds-background-flat-style_2126738.htm#page=1&query=cloudy&position=26).
-kjpargeter. (2017). Water texture Free Vector. Retrieved from: (https://www.freepik.com/free-vector/water-texture_983693.htm#page=1&query=ice&position=1).
-kotkoa. (2018). Closeup large gray clouds. Free Photo. Retrieved from: (https://www.freepik.com/free-photo/closeup-large-gray-clouds_1436340.htm#page=1&query=cloudy&position=47).
-macrovector. (2019). Colored misted wet glass drops realistic composition with rain stains on the window Free Vector. Retrieved from: (https://www.freepik.com/free-vector/colored-misted-wet-glass-drops-realistic-composition-with-rain-stains-window_4282581.htm).
-Pixabay. (2014). Windy. Retrieve from: (https://pixabay.com/sk/photos/tr%C3%A1va-pl%C3%A1%C5%BE-oce%C3%A1n-veterno-371221/).
-Pixabay. (2016). Fog. Retrieve from: (https://pixabay.com/sk/photos/stromy-hmla-les-forrest-lesy-1209660/).
-Rawpixel.com. (2018). Sky astrology cosmos galaxy starry Free Photo. Retrieved from: (https://www.freepik.com/free-photo/sky-astrology-cosmos-galaxy-starry_2987683.htm#page=1&query=clear%20night&position=17).
+Freepik. (2015). Bokeh background for summer Free Vector. Retrieved from: https://www.freepik.com/free-vector/bokeh-background-summer_787048.htm#page=1&query=sunny&position=11.  
+Freepik. (2019). Blurred winter background Free Vector. Retrieved from: https://www.freepik.com/free-vector/blurred-winter-background_3490959.htm#page=1&query=blurred-winter-background&position=13.  
+Freepik. (2020). Realistic full moon sky background design Free Vector. Retrieved from: https://www.freepik.com/free-vector/realistic-full-moon-sky-background-design_6764525.htm#page=1&query=clear%20night&position=4.  
+Freepik. (2020). Sky with clouds background in flat style Free Vector. Retrieved from: https://www.freepik.com/free-vector/sky-with-clouds-background-flat-style_2126738.htm#page=1&query=cloudy&position=26.  
+kjpargeter. (2017). Water texture Free Vector. Retrieved from: https://www.freepik.com/free-vector/water-texture_983693.htm#page=1&query=ice&position=1.  
+kotkoa. (2018). Closeup large gray clouds. Free Photo. Retrieved from: https://www.freepik.com/free-photo/closeup-large-gray-clouds_1436340.htm#page=1&query=cloudy&position=47.  
+macrovector. (2019). Colored misted wet glass drops realistic composition with rain stains on the window Free Vector. Retrieved from: https://www.freepik.com/free-vector/colored-misted-wet-glass-drops-realistic-composition-with-rain-stains-window_4282581.htm.  
+Pixabay. (2014). Windy. Retrieve from: https://pixabay.com/sk/photos/tr%C3%A1va-pl%C3%A1%C5%BE-oce%C3%A1n-veterno-371221/.  
+Pixabay. (2016). Fog. Retrieve from: https://pixabay.com/sk/photos/stromy-hmla-les-forrest-lesy-1209660/.  
+Rawpixel.com. (2018). Sky astrology cosmos galaxy starry Free Photo. Retrieved from: https://www.freepik.com/free-photo/sky-astrology-cosmos-galaxy-starry_2987683.htm#page=1&query=clear%20night&position=17.
