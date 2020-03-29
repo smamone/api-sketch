@@ -41,7 +41,10 @@ $(document).ready(function () {
             getWeatherData(defaultLocation);
             
             // display default location
-            $("#greetLoc").append(defaultLocation);
+            $("#greetLoc").append("Canberra, ACT");
+            
+            // get air quality data for default location
+            getAQI(defaultLocation);
 
         } // close error function
 
@@ -138,7 +141,7 @@ function getAQI(data) {
     // make request to server using AirVisual API call
     $.getJSON(urlAirVisual, function (data) {
 
-        console.log(data);
+//        console.log(data);
 
         // get current air quality of current location
         var currentAQI = data.data.current.pollution.aqius;
