@@ -3,6 +3,8 @@
 $(document).ready(function () {
 
     var newLocation = "";
+    
+    var currentAQ = 0;
 
     if (navigator.geolocation) {
 
@@ -16,11 +18,14 @@ $(document).ready(function () {
             // set string to get location name based on Open Cage API format
             var latLongName = coords.latitude + "+" + coords.longitude;
 
-            // call function to get weather data from API
-            getWeatherData(newLocation);
-
-            // call function to get location name from API
+            // call function to get location name from Open Cage API
             getLocationName(latLongName);
+            
+            // call function to get air quality data from AirVisual API
+            getAQ(currentAQ);
+
+            // call function to get weather data from Dark Sky API
+            getWeatherData(newLocation);
 
         } // close success function
 
@@ -32,7 +37,11 @@ $(document).ready(function () {
             // default location is Canberra lat long
             var defaultLocation = "-35.28346,149.12807";
 
+            // get weather data for default location
             getWeatherData(defaultLocation);
+            
+            // display default location
+            $("#greetLoc").append(defaultLocation);
 
         } // close error function
 
@@ -91,16 +100,16 @@ function timeGreeting() {
 // FUNCTION to get location name from OPEN CAGE API
 function getLocationName(latLongCoords) {
 
-    console.log('in get location name');
+    console.log("in get location name");
 
     // my Open Cage Data API key
     var keyOpenCage = "135d8af66fb04c9bac0092208a55e2a7";
 
     // Open Cage Data API call
-    var geocodeURL = "https://api.opencagedata.com/geocode/v1/json?q=" + latLongCoords + "&key=" + keyOpenCage;
+    var urlGeocode = "https://api.opencagedata.com/geocode/v1/json?q=" + latLongCoords + "&key=" + keyOpenCage;
 
     // make request to server using Open Cage API call
-    $.getJSON(geocodeURL, function (locationData) {
+    $.getJSON(urlGeocode, function (locationData) {
 
 //        console.log(locationData.results[0]);
 
@@ -114,16 +123,38 @@ function getLocationName(latLongCoords) {
 
     }); // close getJSON
 
-    // update data every minute
-//    setTimeout(getLocationName, 60000);
-
 } // close getLocationName function
+
+
+// FUNCTION to load data from AIRVISUAL API
+function getAQ(data) {
+    
+    console.log("get in air quality data");
+    
+    var keyAirVisual = "51443509-b129-4775-ab16-b104855d1133";
+    
+    var urlAirVisual = "https://api.airvisual.com/v2/nearest_city?key=" + keyAirVisual;
+    
+    // make request to server using AirVisual API call
+    $.getJSON(urlAirVisual, function (data) {
+
+        console.log(data);
+
+        // get current air quality of current location
+        var currentAQ = data.data.current.pollution.aqius;
+        
+        // add to html tag
+        $("#airQ").html(currentAQ);
+
+    }); // close getJSON
+    
+} // close getAQ function
 
 
 // FUNCTION to load data from DARK SKY API
 function getWeatherData(currentLocation) {
     
-    console.log('in get weather data');
+    console.log("in get weather data");
 
     // my Dark Sky API key
     var keyDarkSky = "008bf272749fe7c833b4606af967ab5e";
@@ -141,7 +172,7 @@ function getWeatherData(currentLocation) {
         
         // request data
         // DESCRIPTION
-        $("#desc").html(data.currently.summary);
+        $("#summary span").html(data.currently.summary);
         
         // MAX TEMP
         $("#currentMaxTemp span").html(Math.round(maxTemp));
@@ -274,8 +305,8 @@ function dateSeason() {
 
 // FUNCTION to determine the ICON to display based on the current temperature
 function tempIcon(data) {
-
-    var circleCurrentSummary = document.getElementById("circleSummary");
+    
+    // get current temperature from API
     var weatherIcon = document.getElementById("currentTemp");
     
     // get current temperature icon from API
@@ -284,10 +315,6 @@ function tempIcon(data) {
 
     if (currentIcon == "clear") { // clear day
 
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(to top, #fff1eb 0%, #ace0f9 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Clear"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/sun.jpg)",
             "background-size":"cover"
@@ -295,11 +322,6 @@ function tempIcon(data) {
         
     } else if (currentIcon == "clear-night") { // clear night
 
-        $(circleCurrentSummary).css({
-            "background-image":"linear-gradient(60deg, #29323c 0%, #485563 100%)",
-            "color":"#FFFFFF"
-        }); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Clear"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/night.jpg)",
             "background-size":"cover",
@@ -310,10 +332,6 @@ function tempIcon(data) {
 
     } else if (currentIcon == "rain") { // rain
 
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Rain"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/rain.jpg)",
             "background-size":"cover"
@@ -324,10 +342,6 @@ function tempIcon(data) {
 
     } else if (currentIcon == "snow") { // snow
 
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(to top, #accbee 0%, #e7f0fd 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Snow"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image": "url(images/snow.jpg)",
             "background-size": "cover"
@@ -335,10 +349,6 @@ function tempIcon(data) {
 
     } else if (currentIcon == "sleet") { // sleet
 
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Sleet"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/sleet.jpg)",
             "background-size":"cover"
@@ -346,21 +356,16 @@ function tempIcon(data) {
 
     } else if (currentIcon == "wind") { // wind
 
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(to top, #a8edea 0%, #fed6e3 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Windy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/wind.jpg)",
             "background-size":"cover"
         }); // set background image
+        $("#summary").css(
+            "color", "#FFFFFF"
+        ); // change text color to white
 
     } else if (currentIcon == "fog") { // foggy
 
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Fog"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/fog.jpg)",
             "background-size":"cover",
@@ -372,21 +377,13 @@ function tempIcon(data) {
 
     } else if (currentIcon == "cloudy") { // cloudy
 
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/cloud.jpg)",
             "background-size":"cover"
         }); // set background image
 
     } else if (currentIcon == "partly-cloudy-day") { // partly cloudy
-        
-        $(circleCurrentSummary).css(
-            "background-image", "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)"
-        ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Partly cloudy"); // add alt tag for screen readers to represent summary
+
         $(weatherIcon).css({
             "background-image":"url(images/partcloud.jpg)",
             "background-size":"cover"
@@ -394,11 +391,6 @@ function tempIcon(data) {
 
     } else if (currentIcon == "partly-cloudy-night") { // partly cloudy night
 
-        $(circleCurrentSummary).css({
-            "background-image":"linear-gradient(to top, #09203f 0%, #537895 100%)",
-            "color":"#FFFFFF"
-        }); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Partly cloudy"); // add alt tag for screen readers to represent summary
         $(weatherIcon).css({
             "background-image":"url(images/cloudnight.jpg)",
             "background-size":"cover"
@@ -412,10 +404,9 @@ function tempIcon(data) {
 
     } else { // other
 
-        $(circleCurrentSummary).css(
+        $(currentSummary).css(
             "background-image", "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)"
         ); // change circle li background to gradient
-        $(circleCurrentSummary).attr("alt", "Not specified"); // add alt tag for screen readers to represent summary
 
     } // close if statement
 
