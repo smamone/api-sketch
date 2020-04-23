@@ -458,7 +458,7 @@ function tempIcon(data) {
 
     } else { // other
 
-        $(currentSummary).css(
+        $(weatherIcon).css(
             "background-image", "linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)"
         ); // change circle li background to gradient
 
