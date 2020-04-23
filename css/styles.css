@@ -871,7 +871,7 @@ h6{
     
 }
 
-@media screen and (max-width: 550px){
+@media screen and (min-width: 550px){
     
     #greeting{
         margin: 0 auto;
